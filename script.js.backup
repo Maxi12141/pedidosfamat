@@ -1,0 +1,880 @@
+// ============================================================
+//  PEDIDOS FAMAT - script.JS
+// ============================================================
+
+let productosAgregados = [];
+let liquidosAgregados  = [];
+let productoSeleccionado = null;
+
+// ── Base de datos de productos ───────────────────────────────
+const productosDB = [
+    // LINEA P/AUTO
+    {codigo: "SA",     nombre: "Shampoo P/autos"},
+    {codigo: "SV",     nombre: "Silicona de vainilla y Transparente"},
+    {codigo: "LDM",    nombre: "Limpiador desengrasante para manos"},
+    {codigo: "RVS",    nombre: "Renovador Vinilico (silicona)"},
+    // LINEA ABSORBENTE DE HUMEDAD
+    {codigo: "AH",     nombre: "Absorbente de humedad"},
+    // LINEA DE ALCOHOL
+    {codigo: "AP",     nombre: "Alcohol puro"},
+    {codigo: "AQ",     nombre: "Alcohol de quemar"},
+    // LINEA BAÑO
+    {codigo: "QS",     nombre: "Quita Sarro"},
+    {codigo: "LGH",    nombre: "Limpiador en gel T/harpic"},
+    {codigo: "LDB",    nombre: "Limpiador desinfectante para baños"},
+    // LINEA BLANQUEADOR
+    {codigo: "BO",     nombre: "Blanqueador optico"},
+    // LINEA DE BICARBONATO
+    {codigo: "BICS",   nombre: "Bicarbonato de sodio (x Kilo)"},
+    // LINEA DE CERAS
+    {codigo: "CBLEM",  nombre: "Cera blem"},
+    {codigo: "CGC",    nombre: "Cera Glo Cot"},
+    {codigo: "C8",     nombre: "Cera 8M incolora"},
+    {codigo: "CE",     nombre: "Cera Echo incolora"},
+    {codigo: "CN",     nombre: "Cera Negra 8M"},
+    {codigo: "CR",     nombre: "Cera Roja 8M"},
+    // LINEA CREOLINA
+    {codigo: "CREO",   nombre: "Creolina"},
+    // LINEA COCINA
+    {codigo: "DI",     nombre: "Desengrasante industrial"},
+    {codigo: "DC",     nombre: "Desengrasante cocina"},
+    {codigo: "CC",     nombre: "Cif en Crema"},
+    {codigo: "PLO",    nombre: "Polvo limpiador tipo odex (x kilo)"},
+    {codigo: "LH",     nombre: "Limpia Horno"},
+    // LINEA DERRIBANTE P/INSECTO
+    {codigo: "DE",     nombre: "Derribante"},
+    // LINEA DESODORANTE P/PISO
+    {codigo: "DP",     nombre: "Desodorante P/piso"},
+    // LINEA DETERGENTE
+    {codigo: "DN",     nombre: "Detergente conc. Neutro"},
+    {codigo: "DNACA",  nombre: "Detergente Nacarado"},
+    {codigo: "DG",     nombre: "Detergente de Glicerina"},
+    {codigo: "DIN",    nombre: "Detergente industrial"},
+    {codigo: "DCIF",   nombre: "Detergente T/Cif"},
+    {codigo: "DCP",    nombre: "Detergente conc-neutro puro"},
+    // LINEA INSECTICIDA
+    {codigo: "INSCJ",  nombre: "Insecticida casa jardin (Mosca y Mosquito)"},
+    {codigo: "INSF",   nombre: "Insecticida perfumado T/flit"},
+    {codigo: "RM",     nombre: "Repelente P/mosquito"},
+    // LINEA JABON PREMIUM
+    {codigo: "JAP",    nombre: "Jabon liquido ala/suav. premium"},
+    {codigo: "JD",     nombre: "Jabon liquido desengrasante"},
+    {codigo: "JFS",    nombre: "Jabon liquido Famat/suav. Doble perfume"},
+    {codigo: "JARP",   nombre: "Jabon liquido ariel premium"},
+    {codigo: "JRF",    nombre: "Jabon liquido ropa fina"},
+    {codigo: "JSP",    nombre: "Jabon liquido skip premium"},
+    // LINEA JABON ECONOMICO
+    {codigo: "JARE",   nombre: "Jabon liquido ARIEL Eco"},
+    {codigo: "JSS",    nombre: "Jabon skip con suavizante"},
+    {codigo: "JSE",    nombre: "Jabon liquido skip eco"},
+    {codigo: "JAS",    nombre: "Jabon liquido Ala c/suavizante eco"},
+    {codigo: "JES",    nombre: "Jabon liquido extra c/suavizante"},
+    {codigo: "JACE",   nombre: "Jabon Ace"},
+    // LINEA JABON EN POLVO
+    {codigo: "JCLO",   nombre: "Jabon en polvo clorado (x kilo)"},
+    {codigo: "JPOLVO", nombre: "Jabon en polvo (x kilo)"},
+    // LINEA JABON TOCADOR
+    {codigo: "JT",     nombre: "Jabon tocador"},
+    {codigo: "JTL",    nombre: "Jabon Tocador limplus"},
+    // LINEA LAVANDINA
+    {codigo: "L",      nombre: "Lavandina"},
+    {codigo: "LGEL",   nombre: "Lavandina en gel"},
+    {codigo: "LRB",    nombre: "Lavandina R/blanca"},
+    {codigo: "LRC",    nombre: "Lavandina R/color"},
+    // LINEA LAVAVAJILLAS
+    {codigo: "ALV",    nombre: "Abrillantador P/lavavajillas"},
+    {codigo: "SLV",    nombre: "Sal P/lavavajillas"},
+    {codigo: "JLV",    nombre: "Jabon en gel P/lavavajillas"},
+    // LINEA LIMPIA VIDRIOS
+    {codigo: "LV",     nombre: "Limpia vidrios"},
+    // LINEA LIMPIADOR P/LAVARROPA
+    {codigo: "LMATIC", nombre: "Lava Matic"},
+    // LINEA LIQUIDO P/LAMPAZO
+    {codigo: "LLC",    nombre: "Liquido P/lampazo C/cera Fragancia frutilla"},
+    {codigo: "LLS",    nombre: "Liquido P/lampazo siliconado y perfumado"},
+    {codigo: "LLP",    nombre: "Liquido lampazo plus"},
+    // LINEA LUSTRA MUEBLES
+    {codigo: "LMC",    nombre: "Lustra mueble cremoso"},
+    // LINEA MATA ALACRAN
+    {codigo: "MATAAL", nombre: "Mata alacran"},
+    // LINEA NAFTALINA
+    {codigo: "NXK",    nombre: "Naftalina x kg"},
+    // LINEA PERFUME P/ROPA
+    {codigo: "PRAL",   nombre: "Perfume P/ropa al alcohol"},
+    {codigo: "PRALV",  nombre: "Perfume P/ropa al alcohol revivere"},
+    {codigo: "PRAG",   nombre: "Perfume P/ropa al agua"},
+    // LINEA PILETA
+    {codigo: "CLO",    nombre: "Cloro"},
+    {codigo: "PCX5",   nombre: "Pastillas de cloro triple accion x 5 200g"},
+    {codigo: "PC200",  nombre: "Pastillas de cloro triple accion C/U 200g"},
+    {codigo: "PC50",   nombre: "Pastilla de cloro 50g"},
+    {codigo: "CLA",    nombre: "Clarificante Precipitante"},
+    {codigo: "AL",     nombre: "Alguicida"},
+    {codigo: "CG",     nombre: "Cloro granulado"},
+    {codigo: "CGM",    nombre: "Cloro granulado multifuncion"},
+    {codigo: "RPH",    nombre: "Regulador pH"},
+    // LINEA QUITA MANCHAS
+    {codigo: "QMT",    nombre: "Quita manchas Trenet"},
+    {codigo: "QM",     nombre: "Quita manchas"},
+    // LINEA REPELENTE P/PERRO-GATO
+    {codigo: "RPG",    nombre: "Repelente para perro y gato (NO Toxico)"},
+    // LINEA SHAMPOO-ENJUAGUE
+    {codigo: "SE",     nombre: "Shampoo-enjuague sedal"},
+    // LINEA SHAMPOO PERRO
+    {codigo: "SP",     nombre: "Shampoo canino"},
+    // LINEA SODA CAUSTICA
+    {codigo: "SCAU",   nombre: "Soda Caustica granulado (x kilo)"},
+    // LINEA SUAVIZANTE CLASICO
+    {codigo: "SCC",    nombre: "Suavizante celeste Clasico"},
+    {codigo: "SCB",    nombre: "Suavizante Blanco Clasico"},
+    // LINEA SUAVIZANTE
+    {codigo: "SCON",   nombre: "Suavizante comfort"},
+    {codigo: "SCONI",  nombre: "Suavizante coniglio"},
+    {codigo: "SVIVE",  nombre: "Suavizante vivere"},
+    {codigo: "SD",     nombre: "Suavizante Downy Doble Perfume"},
+    // LINEA VINAGRE
+    {codigo: "V",      nombre: "Vinagre de limpieza"},
+    // LINEA BOMBAS BLANQUEADORAS
+    {codigo: "BB",     nombre: "Bombas blanqueadoras"},
+    {codigo: "BE",     nombre: "Bombas efervescentes"},
+    {codigo: "JM",     nombre: "Jabon maravilla"},
+    // ARTICULOS DE LIMPIEZA
+    {codigo: "AA",     nombre: "Aerosol ambar"},
+    {codigo: "ALAM",   nombre: "Aerosol para lampazo"},
+    {codigo: "DV",     nombre: "Difusor aromatico con varillas"},
+    {codigo: "AS",     nombre: "Aerosol saphirus"},
+    {codigo: "AT",     nombre: "Saphirus textil"},
+    {codigo: "DA",     nombre: "Dispenser analogico atomizador"},
+    // LINEA AUTO
+    {codigo: "PW",     nombre: "Pinitos Walker"},
+    {codigo: "PK78",   nombre: "Pinitos k78"},
+    {codigo: "LGK78",  nombre: "Lata en gel mini k78"},
+    {codigo: "LGG",    nombre: "Lata en gel mini glade"},
+    {codigo: "BP",     nombre: "Bolitas perfumadas"},
+    {codigo: "LAE",    nombre: "Lubricante en aerosol Escudo"},
+    {codigo: "SAK78",  nombre: "Silicona aerosol k78"},
+    {codigo: "CPA",    nombre: "Cepillo p/auto"},
+    // LINEA ALFOMBRAS
+    {codigo: "AB",     nombre: "Alfombra baño 65x35"},
+    {codigo: "AG",     nombre: "Alfombra de goma"},
+    {codigo: "AD",     nombre: "Alfombra doble base 35x50"},
+    // LINEA BALDES
+    {codigo: "BCTA",   nombre: "Balde centrifugo tambor acero"},
+    {codigo: "BCTAP",  nombre: "Balde centrifugo tambor acero doble premium"},
+    {codigo: "BM",     nombre: "Balde mopero C/escurridor 16,5 lts oval"},
+    {codigo: "B14",    nombre: "Baldes x14"},
+    {codigo: "B12",    nombre: "Baldes x12"},
+    {codigo: "B9",     nombre: "Baldes x9"},
+    {codigo: "RE",     nombre: "Repuesto escurridor P/balde 16,5l"},
+    {codigo: "RC",     nombre: "Cabos metalicos P/balde centrifugo"},
+    {codigo: "PMG2",   nombre: "Porta mopas P/balde giratorio"},
+    // LINEA BALANCEADO ANIMALES
+    {codigo: "CGV",    nombre: "Comida P/gato Vagoneta"},
+    {codigo: "CPC",    nombre: "Comida P/cachorro Vagoneta"},
+    {codigo: "CPV",    nombre: "Comida P/perro Vagoneta"},
+    {codigo: "CGL",    nombre: "Comida P/gato liwue"},
+    {codigo: "CPS",    nombre: "Comida P/perro sabrosito"},
+    {codigo: "MGA",    nombre: "Mezcla P/Gallina"},
+    {codigo: "BCO",    nombre: "Balanceado P/conejo"},
+    {codigo: "CCPG",   nombre: "Comedero chico"},
+    {codigo: "CGPG",   nombre: "Comedero grande"},
+    {codigo: "PSG",    nombre: "Palita sanitaria"},
+    {codigo: "PM",     nombre: "Piedritas mineral"},
+    // LINEA BARRE HOJAS
+    {codigo: "BHG",    nombre: "Barre Hojas Profesional (grande)"},
+    {codigo: "BHC",    nombre: "Barre hojas reforzado negro"},
+    // LINEA DE BOLSAS
+    {codigo: "B60X90L",  nombre: "Bolsa de residuos 60x90 FENOGLIO"},
+    {codigo: "B60X90R",  nombre: "Bolsas de consorcio 60x90 Rosario"},
+    {codigo: "B85X110R", nombre: "Bolsas de consorcio 85x110 Rosario"},
+    {codigo: "B90X120R", nombre: "Bolsas de consorcio 90x120 Rosario"},
+    {codigo: "B45X60D",  nombre: "Bolsas de residuos 45x60 duo"},
+    {codigo: "B45X60R",  nombre: "Bolsas de residuos 45x60 Rosario"},
+    // LINEA BROCHES
+    {codigo: "BMR",    nombre: "Broches madera rayita"},
+    {codigo: "BPM",    nombre: "Broches plasticos MAKE"},
+    {codigo: "BPC",    nombre: "Broches plasticos CLIP"},
+    // LINEA BURLETES
+    {codigo: "BF",     nombre: "Burletes doble de friselina"},
+    {codigo: "BCU",    nombre: "Burletes doble de cuerina"},
+    {codigo: "BDP",    nombre: "Burletes zocalo doble Premium"},
+    // LINEA DE CABOS
+    {codigo: "C120E",  nombre: "Cabo de madera 1,20 eco"},
+    {codigo: "C120P",  nombre: "Cabo de madera 1,20 (pino)"},
+    {codigo: "C150",   nombre: "Cabo de madera 1,50"},
+    {codigo: "C200",   nombre: "Cabo de madera 2,00"},
+    {codigo: "CBARRE", nombre: "Cabo de madera P/Barrendero"},
+    {codigo: "CE150",  nombre: "Cabo extensible 1,5 mts"},
+    {codigo: "CE200",  nombre: "Cabo extensible 2,00 mts"},
+    {codigo: "CF120",  nombre: "Cabo metalico forrado 1,20"},
+    // LINEA CABO SOPORTE
+    {codigo: "SCAB",   nombre: "Soporte para dos cabos adhesivo"},
+    // LINEA CANASTO
+    {codigo: "CPB",    nombre: "Canasto P/broches"},
+    {codigo: "CRM",    nombre: "Canasto redondo mediano"},
+    {codigo: "CRH",    nombre: "Canasto para ropa cuadrado"},
+    {codigo: "CRG",    nombre: "Canasto para ropa FLORIDA"},
+    // LINEA CEPILLOS
+    {codigo: "CLTH",   nombre: "Cepillo limpia techo Hongo"},
+    {codigo: "CLTG",   nombre: "Cepillo limpia techo GLOBO"},
+    {codigo: "CUP",    nombre: "Cepillo uñas C/piedra pomez"},
+    {codigo: "CUX2",   nombre: "Cepillo uñas x2"},
+    {codigo: "CU1",    nombre: "Cepillo uñas c/u"},
+    {codigo: "CZ",     nombre: "Cepillo lava-zapatilla"},
+    {codigo: "CCA",    nombre: "Cepillo planchita y cerrado"},
+    {codigo: "CIBE",   nombre: "Cepillo limpia inodoro c/base extralimpiador"},
+    {codigo: "CIC",    nombre: "Cepillos limpia inodoro chico"},
+    {codigo: "CIG",    nombre: "Cepillos limpia inodoro grande"},
+    {codigo: "CIBS",   nombre: "Cepillos limpia inodoro c/base salzano"},
+    {codigo: "CIBC",   nombre: "Cepillos limpia inodoro c/base importado"},
+    // LINEA CESTO DE BASURA
+    {codigo: "CB12",   nombre: "Cesto de basura 12 l Grande"},
+    {codigo: "CB5",    nombre: "Cesto de basura 5 l chico"},
+    {codigo: "CBP13",  nombre: "Cesto de basura c/pedal 13lts"},
+    // LINEA CORTINA BAÑO
+    {codigo: "CBAÑO",  nombre: "Cortina baño C/protector y ganchos"},
+    // LINEA CORTINA PLASTICA
+    {codigo: "CP",     nombre: "Cortina plastica pesada 90"},
+    // LINEA DESODORANTE-DESINFECTANTE
+    {codigo: "DAL",    nombre: "Desinfectante aerosol lysoform"},
+    {codigo: "DGL",    nombre: "Desodorante de ambiente glade"},
+    {codigo: "DPO",    nombre: "Desodorante de ambiente poett"},
+    {codigo: "DRC",    nombre: "Desodorante rexona odorono 60gr"},
+    // LINEA DOY PACK
+    {codigo: "DPV",    nombre: "Doy Pack limpia vidrio"},
+    {codigo: "DPL",    nombre: "Doy Pack lysoform"},
+    // LINEA ESCOBAS
+    {codigo: "EPG",    nombre: "Escoba de paja cabo grueso"},
+    {codigo: "EPF",    nombre: "Escoba de paja cabo fino"},
+    {codigo: "EA",     nombre: "Escobeta azteca"},
+    {codigo: "EG",     nombre: "Escobillon grande florinda/inca"},
+    {codigo: "EM",     nombre: "Escobillon mediano huarpe/pandi"},
+    {codigo: "ESM",    nombre: "Escobillon laqueado simil madera"},
+    {codigo: "EC",     nombre: "Escobillon chico irizar"},
+    // LINEA ESPONJAS
+    {codigo: "EA30",   nombre: "Esponjas de acero grande Make 30grs"},
+    {codigo: "EA12",   nombre: "Esponjas de acero make 12g"},
+    {codigo: "EDEA",   nombre: "Esponjas de acero DEA"},
+    {codigo: "EAE",    nombre: "Esponjas de acero ECONOMICA"},
+    {codigo: "ED12",   nombre: "Esponjas dorada de 12grs"},
+    {codigo: "ED30",   nombre: "Esponjas dorada de 30grs"},
+    {codigo: "EAM",    nombre: "Esponjas antiadherentes Make"},
+    {codigo: "EEP",    nombre: "Esponja extralimpiadora plus"},
+    {codigo: "EDE",    nombre: "Esponjas de bronces ecooo"},
+    {codigo: "EB",     nombre: "Esponja de baño grande"},
+    {codigo: "EAL",    nombre: "Esponjas Amarillas (LISA)"},
+    {codigo: "EAB",    nombre: "Esponjas economicas Amarillas (Batuque)"},
+    {codigo: "EPN",    nombre: "Esponja fibra parrillera (negra)"},
+    {codigo: "EFAM",   nombre: "Esponja fibra abrasiva make"},
+    {codigo: "ECEF",   nombre: "Esponja fibra extrafuerte (celeste)"},
+    {codigo: "EASUT",  nombre: "Esponjas Amarillas salvauñas task"},
+    {codigo: "RDDC",   nombre: "Rejillas Dorada doble cara"},
+    {codigo: "EASUM",  nombre: "Esponjas Amarillas salvauñas make"},
+    // LINEA FOSFOROS
+    {codigo: "F22BD",  nombre: "Fosforo x220 buenos dias"},
+    {codigo: "F220",   nombre: "Fosforos x220"},
+    {codigo: "F400",   nombre: "Fosforos x400"},
+    // LINEA FRANELAS
+    {codigo: "FRA",    nombre: "Franela Naranja MT"},
+    // LINEA FUENTON
+    {codigo: "FU15",   nombre: "Fuenton x13lts"},
+    {codigo: "FU24",   nombre: "Fuenton 24lts"},
+    {codigo: "FU20",   nombre: "Fuenton x20lts"},
+    {codigo: "FU30",   nombre: "Fuenton x30lts"},
+    // LINEA GATILLOS
+    {codigo: "GB",     nombre: "Gatillos (Blanco)"},
+    {codigo: "GPRO",   nombre: "Gatillos (profesional)"},
+    // LINEA GUANTES
+    {codigo: "GP",     nombre: "Guantes pequeños P"},
+    {codigo: "GG",     nombre: "Guantes grandes G"},
+    {codigo: "GM",     nombre: "Guantes medianos M"},
+    // LINEA INSECTICIDA
+    {codigo: "IR",     nombre: "Insecticidas en aerosol raid comun"},
+    {codigo: "ISC",    nombre: "Insecticidas shelton cucarachas"},
+    {codigo: "IS",     nombre: "Insecticidas en aerosol shelton"},
+    {codigo: "CBRG",   nombre: "Cebo en bloque raticida geltex"},
+    {codigo: "GRUP",   nombre: "Granulado raticida ultra plus"},
+    {codigo: "CCG",    nombre: "Cebo cucarachas geltek"},
+    {codigo: "CMG",    nombre: "Cebo mosca granulado"},
+    // LINEA JABON EN PAN
+    {codigo: "JA120",  nombre: "Jabon en pan astro 120"},
+    {codigo: "JA150",  nombre: "Jabon en pan astro 150"},
+    {codigo: "JQM",    nombre: "Jabon detergente Quitamanchas"},
+    {codigo: "JA200",  nombre: "Jabon en pan Blanco Ala coco"},
+    {codigo: "JG200",  nombre: "Jabon en pan gigante x200"},
+    {codigo: "JC200",  nombre: "Jabon en pan cosquin x200"},
+    // LINEA JABONETA
+    {codigo: "JRE",    nombre: "Jabonetas Rexonas"},
+    {codigo: "JQX3",   nombre: "Jabonetas x 3 Qsens"},
+    // LAMPAZO-REPUESTO BARRENDERO
+    {codigo: "R40",    nombre: "Repuesto Lampazo Barrendero 40cm"},
+    {codigo: "R60",    nombre: "Repuesto Lampazo Barrendero 60cm"},
+    {codigo: "R80",    nombre: "Repuesto Lampazo Barrendero 80cm"},
+    {codigo: "RBM",    nombre: "Lampazo x80cm Barrendero MADERA"},
+    {codigo: "LHILO",  nombre: "Lampazo de hilo n°40"},
+    {codigo: "LP",     nombre: "Lampazo pabilo n 40"},
+    // LINEA LIMPIA VIDRIOS
+    {codigo: "LV20",   nombre: "Limpia vidrios 20cm"},
+    {codigo: "LV30",   nombre: "Limpia vidrios 30cm"},
+    {codigo: "LVC",    nombre: "Limpia vidrios M/corto"},
+    // LINEA LUSTRA MUEBLES
+    {codigo: "LMCE",   nombre: "Lustra muebles Ceramicol"},
+    {codigo: "LMB",    nombre: "Lustra Muebles BLEM"},
+    // LINEA MATA MOSCA
+    {codigo: "MMP",    nombre: "Mata mosca paleta"},
+    {codigo: "MFLIT",  nombre: "Maquina de flit"},
+    {codigo: "MMM",    nombre: "Mata mosca manito"},
+    // LINEA MAQUINA AFEITAR
+    {codigo: "MA",     nombre: "Gillete prestobarba"},
+    // LINEA MOPAS
+    {codigo: "MCR",    nombre: "Mopa centrifugo repuesto"},
+    {codigo: "MPARM",  nombre: "Mopa plana + armazon"},
+    {codigo: "MPAÑO",  nombre: "Mopa paño"},
+    {codigo: "MGMT",   nombre: "Mopa algodón gris MR TRAPO"},
+    {codigo: "MBMT",   nombre: "Mopa algodón blanca MR TRAPO"},
+    // LINEA PALAS BASURA
+    {codigo: "PCELG",  nombre: "Pala c/cabo y goma euro lanin c/goma"},
+    {codigo: "PCE",    nombre: "Pala cabo economica"},
+    {codigo: "PCEL",   nombre: "Pala c/cabo euro lanin"},
+    {codigo: "PMCG",   nombre: "Pala mano c/goma"},
+    {codigo: "PMSG",   nombre: "Pala de mano sin goma"},
+    // LINEA PALANGANAS
+    {codigo: "P4",     nombre: "Palangana 4lts"},
+    {codigo: "P6",     nombre: "Palangana 6lts"},
+    {codigo: "P9",     nombre: "Palangana 9lts"},
+    // LINEA PAPELES
+    {codigo: "PA",     nombre: "Papel Aluminio 28cm"},
+    {codigo: "PF",     nombre: "Papel film 30mts"},
+    {codigo: "PCMR",   nombre: "Papel cocina maxi rollo"},
+    {codigo: "PCX3E",  nombre: "Papel de cocina Elegante x3"},
+    {codigo: "PHX4E",  nombre: "Papel higienico x4 elegante"},
+    {codigo: "PHX4B",  nombre: "Papel higienico x4 buddy"},
+    {codigo: "PHX4H",  nombre: "Papel higienico x4 hiar"},
+    {codigo: "PHX6N",  nombre: "Papel higienico x6 Niraflor"},
+    {codigo: "PHX6E",  nombre: "Papel higienico x6 elegante"},
+    {codigo: "PCS",    nombre: "Papel higienico suelto cordial"},
+    // LINEA PAPELES DISPENSER
+    {codigo: "PHDX8",  nombre: "Papel higienico dispenser 8 x300"},
+    {codigo: "PHDX1",  nombre: "Papel higienico dispenser 8 x 300 c/u"},
+    {codigo: "BIX2",   nombre: "Bobina Industrial 25x400 x2 NAPOLEON"},
+    {codigo: "BIX1",   nombre: "Bobina industrial 25x400 C/U NAPOLEON"},
+    {codigo: "TIX1",   nombre: "Toallas intercaladas C/U"},
+    {codigo: "TIX10",  nombre: "Toallas intercaladas 20X24 x10"},
+    // LINEA PASA CERA
+    {codigo: "PSCER",  nombre: "Pasa cera Grande"},
+    // LINEA PASTILLA INODORO
+    {codigo: "PIC",    nombre: "Pastillas p/inodoro Pato (canasta)"},
+    {codigo: "PI5EN1", nombre: "Pastillas p/inodoro canasta solida 5 en 1"},
+    {codigo: "PIA",    nombre: "Pastillas P/inodoro Pato Purific/glade adhesivo"},
+    {codigo: "PIM",    nombre: "Pastilla inodoro P/mochilas Pato"},
+    // LINEA PILAS
+    {codigo: "PEAA",   nombre: "Pilas energizer AA"},
+    {codigo: "PEAAA",  nombre: "Pilas energizer AAA"},
+    // LINEA PILETA (continuacion)
+    {codigo: "KA",     nombre: "Kit para analisis pH cloro"},
+    {codigo: "SHP",    nombre: "Saca hoja P/pileta"},
+    {codigo: "SHBP",   nombre: "Saca hoja P/pileta bolsa"},
+    {codigo: "CASH",   nombre: "Cabo aluminio p/saca hojas"},
+    {codigo: "BF8R",   nombre: "Barrefondo 8 ruedas"},
+    {codigo: "BFML",   nombre: "Barrefondo media luna"},
+    {codigo: "BP200",  nombre: "Boya hongo P/piletas (P/200)"},
+    {codigo: "BP50",   nombre: "Boya mini Pileta lona (P/50)"},
+    {codigo: "BS200",  nombre: "Boya grande satelital (P/200)"},
+    {codigo: "BS50",   nombre: "Boya chica satelital (P/50)"},
+    // LINEA PLUMEROS
+    {codigo: "PP",     nombre: "Plumero de pabilo blanco"},
+    {codigo: "PHC",    nombre: "Plumero algodon hilo grueso"},
+    {codigo: "PHG",    nombre: "Plumero algodon hilo super grueso"},
+    // LINEA PULVERIZADOR
+    {codigo: "P500",   nombre: "Pulverizador multiuso 500cc"},
+    {codigo: "P750",   nombre: "Pulverizador multiuso 750cc"},
+    // LINEA REPELENTE-ESPIRAL
+    {codigo: "ROFF",   nombre: "Repelente off"},
+    {codigo: "R911",   nombre: "Repelente 911"},
+    {codigo: "TMX12",  nombre: "Tabletas P/mosquitos x12"},
+    {codigo: "TMCU",   nombre: "Tabletas P/mosquitos C/U"},
+    {codigo: "ECU",    nombre: "Raid espiral x unidad"},
+    {codigo: "EX12",   nombre: "Raid espiral x12"},
+    // LINEA REJILLAS
+    {codigo: "RCMS",   nombre: "Rejilla de color Magic Soft"},
+    {codigo: "RPMT",   nombre: "Rejilla pabilo MT"},
+    {codigo: "RAM",    nombre: "Rejilla americana MAKE"},
+    {codigo: "RM6040", nombre: "Rejillas microfibra Laffitte 60x40"},
+    {codigo: "RM3535", nombre: "Rejillas Microfibra Laffitte 35x35"},
+    {codigo: "REM",    nombre: "Rejillas Esponjas Make"},
+    {codigo: "RSUEL",  nombre: "Rejilla paños multiusos sueltos"},
+    // LINEA REPASADORES
+    {codigo: "RCM",    nombre: "Repasadores de tolla Make"},
+    {codigo: "RF",     nombre: "Repasadores tollas fribran"},
+    {codigo: "RT",     nombre: "Repasadores toalla mister trapo"},
+    // LINEA RIEGO
+    {codigo: "SAP",    nombre: "Sapito riego"},
+    {codigo: "MAN",    nombre: "Manguera 15 mts 1/2"},
+    // LINEA SAHUMERIOS
+    {codigo: "PSH",    nombre: "Porta Sahumerios"},
+    {codigo: "CX1",    nombre: "Carbon neutro sagrada madre C/U (Caja de 24)"},
+    {codigo: "BHX4",   nombre: "Bomba humo sagrada madre x4"},
+    {codigo: "CX10",   nombre: "Sahumerios cono cascada x10"},
+    {codigo: "SFX10",  nombre: "Sahumerios banglades x10 finos"},
+    {codigo: "STDX5",  nombre: "Sahumerios triple duracion x 5 gruesos"},
+    // LINEA SECADOR PARA PISO
+    {codigo: "SBP",    nombre: "Secador doble Premium blanco"},
+    {codigo: "SDE",    nombre: "Secador doble eco"},
+    {codigo: "SPS",    nombre: "Secador de piso salzano"},
+    // LINEA SOPAPA
+    {codigo: "SG20",   nombre: "Sopapa Grande 20cm"},
+    {codigo: "SC11",   nombre: "Sopapa Chica 11cm"},
+    // LINEA TRAPO PISO
+    {codigo: "TB",     nombre: "Trapo de pisos blancos"},
+    {codigo: "TBC",    nombre: "Trapo de pisos consorcios blanco MT"},
+    {codigo: "TGC",    nombre: "Trapo de pisos consorcios gris MT"},
+    {codigo: "TG",     nombre: "Trapo de pisos gris MT"},
+    {codigo: "TRL10",  nombre: "Trapo de pisos rayados linea 10"},
+    {codigo: "TBL10",  nombre: "Trapo de pisos blanco linea 10"},
+    {codigo: "TGL10",  nombre: "Trapo de pisos gris linea 10"},
+    // LINEA VELAS
+    {codigo: "VC",     nombre: "Velas Cortas 10cm"},
+    {codigo: "VL",     nombre: "Velas Largas 20cm"},
+    // LINEA VIRULANA
+    {codigo: "VX10",   nombre: "Virulana x10 (lana de acero)"},
+    // LINEA TOALLA FEMENINA
+    {codigo: "TFA",    nombre: "Toallas femeninas Always ajuste perfecto x 8"},
+    {codigo: "TFD",    nombre: "Toallas femeninas doncella x 8"}
+];
+
+// ── Palabras clave para detectar líquidos y excluirlos del buscador ──
+const palabrasLiquido = [
+    'liquido','gel','aerosol','cloro','lavandina','alcohol','amonia',
+    'desinfectante','desengrasante','suavizante','detergente','doy pack',
+    'jarabe','aceite','spray','lata','vinagre','creolina','atomizador',
+    'botella','mini','siliconado','lysoform','glade','poett','flit',
+    'lubricante','conc.','soda caustica','regulador'
+];
+
+const productosNoLiquidos = productosDB.filter(p =>
+    !palabrasLiquido.some(pal => p.nombre.toLowerCase().includes(pal))
+);
+
+// ── Historial guardado en localStorage ──────────────────────
+function cargarHistorial() {
+    try {
+        return JSON.parse(localStorage.getItem('famat_historial')) || [];
+    } catch { return []; }
+}
+
+function guardarHistorial(lista) {
+    try {
+        localStorage.setItem('famat_historial', JSON.stringify(lista));
+    } catch {}
+}
+
+// ── CATEGORÍAS DINÁMICAS ──────────────────────────────────────
+
+let categoriaActual = 'producto';
+let granelAgregados = [];
+
+const productosPorKilo = [
+    'bicarbonato', 'jabon en polvo', 'polvo limpiador', 'cloro granulado',
+    'naftalina', 'soda caustica', 'absorvente de humedad', 'granulado',
+    'clorado', 'kilo', 'x kilo', '(x kilo)'
+];
+
+function esCategoriaGranel(nombre) {
+    return productosPorKilo.some(palabra => nombre.toLowerCase().includes(palabra));
+}
+
+function cambiarCategoria(categoria, btn) {
+    categoriaActual = categoria;
+    
+    // Actualizar botones activos
+    document.querySelectorAll('.btn-categoria').forEach(b => {
+        b.classList.remove('btn-categoria--active');
+    });
+    btn.classList.add('btn-categoria--active');
+    
+    // Ocultar todas las secciones
+    document.getElementById('seccion-producto').classList.remove('seccion-dinamica--visible');
+    document.getElementById('seccion-liquido').classList.remove('seccion-dinamica--visible');
+    document.getElementById('seccion-granel').classList.remove('seccion-dinamica--visible');
+    
+    // Mostrar la sección seleccionada
+    document.getElementById(`seccion-${categoria}`).classList.add('seccion-dinamica--visible');
+}
+
+function agregarGranelSeleccionado() {
+    const select = document.getElementById('granelSelect');
+    const nombreProducto = select.value.trim();
+    
+    if (!nombreProducto) {
+        alert('⚠️ Por favor, seleccioná un producto a granel');
+        return;
+    }
+    
+    const kilos = parseFloat(document.getElementById('granelKilos').value) || 1;
+    
+    if (kilos <= 0) {
+        alert('⚠️ La cantidad de kilos debe ser mayor a 0');
+        return;
+    }
+    
+    const producto = {
+        nombre: nombreProducto,
+        kilos: kilos,
+        id: Math.random()
+    };
+    
+    granelAgregados.push(producto);
+    mostrarGranelAgregados();
+    
+    select.value = '';
+    document.getElementById('granelKilos').value = '1';
+}
+
+function mostrarGranelAgregados() {
+    const contenedor = document.getElementById('granelAgregados');
+    
+    if (granelAgregados.length === 0) {
+        contenedor.innerHTML = '';
+        return;
+    }
+    
+    contenedor.innerHTML = granelAgregados.map(item => `
+        <div class="granel-item">
+            <div class="granel-info">
+                <div class="granel-nombre">${item.nombre}</div>
+                <div class="granel-detalles">${item.kilos} kg</div>
+            </div>
+            <button class="btn-eliminar-liquido" onclick="eliminarGranel(${item.id})">✕ Eliminar</button>
+        </div>
+    `).join('');
+}
+
+function eliminarGranel(id) {
+    granelAgregados = granelAgregados.filter(item => item.id !== id);
+    mostrarGranelAgregados();
+}
+
+// ── Inicializar SELECT de Granel ────────────────────
+function inicializarBuscadorGranel() {
+    const select = document.getElementById('granelSelect');
+    
+    if (!select) return;
+    
+    // Llenar SELECT solo con productos de granel
+    const productosGranel = productosDB.filter(p => esCategoriaGranel(p.nombre));
+    
+    productosGranel.forEach(producto => {
+        const option = document.createElement('option');
+        option.value = producto.nombre;
+        option.textContent = producto.nombre;
+        select.appendChild(option);
+    });
+}
+
+
+// ── Inicialización ────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+    mostrarProductos();
+    mostrarLiquidos();
+    inicializarBuscador();
+    inicializarBuscadorGranel();
+    mostrarHistorial();
+
+    const liquidoSelect = document.getElementById('liquidoSelect');
+    if (liquidoSelect) {
+        liquidoSelect.addEventListener('change', function () {
+            const filaAroma = document.getElementById('filaAroma');
+            if (this.value === 'Perfume P/ropa al agua') {
+                filaAroma.style.display = 'block';
+                document.getElementById('aromaSelect').focus();
+            } else {
+                filaAroma.style.display = 'none';
+                document.getElementById('aromaSelect').value = '';
+            }
+        });
+    }
+});
+
+// ── Inicializar SELECT de Productos ──────────────────────
+function inicializarBuscador() {
+    const select = document.getElementById('productoSelect');
+    
+    if (!select) return;
+    
+    // Llenar SELECT con todos los productos
+    productosNoLiquidos.forEach(producto => {
+        const option = document.createElement('option');
+        option.value = producto.nombre;
+        option.textContent = producto.nombre;
+        select.appendChild(option);
+    });
+    
+    // Listener para detectar cambios
+    select.addEventListener('change', function() {
+        const nombre = this.value;
+        if (!nombre) {
+            document.getElementById('filakilos').style.display = 'none';
+            document.getElementById('productoQty').value = '1';
+            return;
+        }
+        
+        const esXKilo = nombre.toLowerCase().includes('x kilo') || nombre.toLowerCase().includes('(x kilo)');
+        const filakilos = document.getElementById('filakilos');
+        const inputCantidad = document.getElementById('productoQty');
+        
+        if (esXKilo) {
+            filakilos.style.display = 'block';
+            inputCantidad.value = '1';
+            document.getElementById('productoKilos').focus();
+        } else {
+            filakilos.style.display = 'none';
+            inputCantidad.value = '1';
+            inputCantidad.focus();
+        }
+    });
+}
+
+// ── Agregar / eliminar productos ──────────────────────────────
+function agregarProductoSeleccionado() {
+    const nombre = document.getElementById('productoSelect').value;
+    if (!nombre) { alert('⚠️ Por favor, seleccioná un producto'); return; }
+
+    const esXKilo = nombre.toLowerCase().includes('x kilo') || nombre.toLowerCase().includes('(x kilo)');
+    let cantidad = null, kilos = null;
+
+    if (esXKilo) {
+        kilos = parseFloat(document.getElementById('productoKilos').value) || 0;
+        if (kilos <= 0) { alert('⚠️ Por favor, ingresá una cantidad válida de kilos'); return; }
+    } else {
+        cantidad = parseInt(document.getElementById('productoQty').value) || 1;
+    }
+
+    productosAgregados.push({ id: Date.now(), nombre, cantidad, kilos });
+
+    // Resetear campos
+    document.getElementById('productoSelect').value = '';
+    const inputQty = document.getElementById('productoQty');
+    inputQty.value = '1';
+    document.getElementById('filakilos').style.display = 'none';
+    document.getElementById('productoKilos').value = '1';
+
+    mostrarProductos();
+}
+
+function eliminarProducto(id) {
+    productosAgregados = productosAgregados.filter(p => p.id !== id);
+    mostrarProductos();
+}
+
+function mostrarProductos() {
+    const container = document.getElementById('productosAgregados');
+    if (productosAgregados.length === 0) {
+        container.innerHTML = '<p style="color:#999;margin:0;">Sin productos agregados</p>';
+        return;
+    }
+    container.innerHTML = productosAgregados.map(p => {
+        const det = (p.kilos !== null && p.kilos > 0) ? `${p.kilos} kg` : `x${p.cantidad}`;
+        return `<div class="producto-item">
+            <div class="producto-info">
+                <div class="producto-nombre">${p.nombre}</div>
+                <div class="producto-detalles">${det}</div>
+            </div>
+            <button class="btn-eliminar-liquido" onclick="eliminarProducto(${p.id})">🗑️</button>
+        </div>`;
+    }).join('');
+}
+
+// ── Agregar / eliminar líquidos ───────────────────────────────
+function agregarLiquidoNuevo() {
+    const select = document.getElementById('liquidoSelect');
+    let nombre   = select.value;
+    const litros = parseFloat(document.getElementById('liquidoLitros').value);
+
+    if (!nombre) { alert('⚠️ Por favor, seleccioná un líquido'); return; }
+
+    if (nombre.includes('Perfume')) {
+        const aroma = document.getElementById('aromaSelect').value;
+        if (!aroma) { alert('⚠️ Por favor, seleccioná un aroma para el perfume'); return; }
+        nombre = `${nombre} - ${aroma}`;
+    }
+
+    if (!litros || litros <= 0) { alert('⚠️ Por favor, ingresá una cantidad válida de litros'); return; }
+
+    liquidosAgregados.push({ id: Date.now(), nombre, litros });
+
+    select.value = '';
+    document.getElementById('liquidoLitros').value = '1';
+    document.getElementById('filaAroma').style.display = 'none';
+    document.getElementById('aromaSelect').value = '';
+
+    mostrarLiquidos();
+}
+
+function eliminarLiquido(id) {
+    liquidosAgregados = liquidosAgregados.filter(l => l.id !== id);
+    mostrarLiquidos();
+}
+
+function mostrarLiquidos() {
+    const container = document.getElementById('liquidosAgregados');
+    if (liquidosAgregados.length === 0) {
+        container.innerHTML = '<p style="color:#999;margin:0;">Sin líquidos agregados</p>';
+        return;
+    }
+    container.innerHTML = liquidosAgregados.map(l =>
+        `<div class="liquido-item">
+            <div class="liquido-info">
+                <div class="liquido-nombre">${l.nombre}</div>
+                <div class="liquido-detalles">${l.litros} L</div>
+            </div>
+            <button class="btn-eliminar-liquido" onclick="eliminarLiquido(${l.id})">🗑️</button>
+        </div>`
+    ).join('');
+}
+
+// ── Limpiar formulario ────────────────────────────────────────
+function confirmarLimpiar() {
+    if (productosAgregados.length === 0 && liquidosAgregados.length === 0) {
+        limpiarFormulario();
+        return;
+    }
+    if (confirm('¿Querés limpiar el formulario? Se borrarán los productos y líquidos cargados.')) {
+        limpiarFormulario();
+    }
+}
+
+function limpiarFormulario() {
+    document.getElementById('cliente').value  = '';
+    document.getElementById('entrega').value  = '';
+    document.getElementById('notas').value    = '';
+    document.getElementById('productoSelect').value = '';
+    document.getElementById('granelSelect').value = '';
+
+    const inputQty = document.getElementById('productoQty');
+    inputQty.value = '1';
+
+    document.getElementById('liquidoSelect').value = '';
+    document.getElementById('liquidoLitros').value = '1';
+    document.getElementById('aromaSelect').value   = '';
+    document.getElementById('filakilos').style.display  = 'none';
+    document.getElementById('filaAroma').style.display  = 'none';
+    document.getElementById('productoKilos').value = '1';
+
+    productosAgregados  = [];
+    liquidosAgregados   = [];
+    granelAgregados     = [];
+
+    mostrarProductos();
+    mostrarLiquidos();
+    mostrarGranelAgregados();
+    document.getElementById('cliente').focus();
+}
+
+// ── Copiar alias ──────────────────────────────────────────────
+function copiarAlias() {
+    const texto = 'FAMAT.PEDIDOS';
+    navigator.clipboard.writeText(texto)
+        .then(() => alert('✓ Alias copiado al portapapeles: ' + texto))
+        .catch(() => alert('No se pudo copiar automáticamente. El alias es: ' + texto));
+}
+
+// ── Enviar pedido: guarda en Controlador y abre WA de aviso ──
+function enviarPorWhatsApp() {
+    const cliente = document.getElementById('cliente').value.trim();
+    const entrega = document.getElementById('entrega').value;
+    const notas   = document.getElementById('notas').value.trim();
+
+    if (!cliente) { alert('⚠️ Por favor, ingresá el nombre del cliente'); return; }
+    if (productosAgregados.length === 0 && liquidosAgregados.length === 0 && granelAgregados.length === 0) {
+        alert('⚠️ Por favor, agregá al menos un producto, líquido o granel'); return;
+    }
+    if (!entrega) { alert('⚠️ Por favor, seleccioná una fecha de entrega'); return; }
+
+    const fechaFormateada = new Date(entrega + 'T12:00:00').toLocaleDateString('es-AR');
+
+    // 1️⃣ Guardar en localStorage — el Controlador lo levanta automáticamente
+    const STORAGE_KEY = 'famat_pedidos';
+    let pedidos = [];
+    try { pedidos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch {}
+
+    pedidos.unshift({
+        id: Date.now(),
+        fechaCreacion: new Date().toLocaleDateString('es-AR'),
+        cliente,
+        productos: JSON.parse(JSON.stringify(productosAgregados)),
+        liquidos:  JSON.parse(JSON.stringify(liquidosAgregados)),
+        granel:    JSON.parse(JSON.stringify(granelAgregados)),
+        entrega:   fechaFormateada,
+        notas,
+        estado:    'pendiente'
+    });
+
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(pedidos)); }
+    catch { alert('Error al guardar el pedido. Revisá el almacenamiento.'); return; }
+
+    // 2️⃣ Abrir WhatsApp con mensaje de aviso al número del controlador
+    const msgWA = `⚠️ Nuevo pedido de "${cliente}"`;
+    const urlWA = `https://wa.me/5493534247019?text=${encodeURIComponent(msgWA)}`;
+    window.open(urlWA, '_blank');
+
+    limpiarFormulario();
+    mostrarHistorial();
+}
+
+// ── Historial ─────────────────────────────────────────────────
+function mostrarHistorial() {
+    const contenedor = document.getElementById('listaPedidos');
+    if (!contenedor) return;
+
+    let historial = [];
+    try { historial = JSON.parse(localStorage.getItem('famat_pedidos')) || []; } catch {}
+
+    if (historial.length === 0) {
+        contenedor.innerHTML = '<div class="mensaje">📭 Aún no hay pedidos enviados.</div>';
+        return;
+    }
+
+    let html = `<table class="tabla-pedidos">
+        <thead><tr>
+            <th>Fecha envío</th>
+            <th>Cliente</th>
+            <th>Detalle</th>
+            <th>Entrega</th>
+            <th>Estado</th>
+        </tr></thead><tbody>`;
+
+    historial.forEach(p => {
+        const prods = (p.productos || []).map(x => {
+            const det = (x.kilos !== null && x.kilos > 0) ? `${x.kilos} kg` : `x${x.cantidad}`;
+            return `${x.nombre} (${det})`;
+        }).join('<br>');
+
+        const liqs = (p.liquidos && p.liquidos.length > 0)
+            ? p.liquidos.map(l => `${l.nombre} — ${l.litros} L`).join('<br>')
+            : '';
+
+        const detalle = [prods, liqs].filter(Boolean).join('<br><em style="color:#667eea">Líquidos:</em><br>');
+
+        const etiquetas = {
+            pendiente: '🕐 Pendiente',
+            en_preparacion: '⚙️ En preparación',
+            listo: '✅ Listo',
+            entregado: '🚚 Entregado'
+        };
+
+        html += `<tr>
+            <td>${p.fechaCreacion || p.fecha || ''}</td>
+            <td><strong>${p.cliente}</strong></td>
+            <td style="font-size:0.88em;">${detalle}${p.notas ? `<br><em>📝 ${p.notas}</em>` : ''}</td>
+            <td>${p.entrega}</td>
+            <td>${etiquetas[p.estado] || p.estado}</td>
+        </tr>`;
+    });
+
+    html += '</tbody></table>';
+    html += `<div class="resumen">
+        <div class="resumen-item"><span>Total de pedidos enviados:</span><span>${historial.length}</span></div>
+    </div>`;
+
+    contenedor.innerHTML = html;
+}

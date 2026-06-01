@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos Famat</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d6177e">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Famat">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon-512x512.png">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛒 Pedidos Famat</h1>
+            <p>Sistema de gestión de pedidos</p>
+        </header>
+
+        <div class="content">
+            <!-- Formulario de Pedidos -->
+            <div class="form-section">
+                <h2>Crear Nuevo Pedido</h2>
+
+                <div class="form-group">
+                    <label for="cliente">Nombre del Cliente:</label>
+                    <input type="text" id="cliente" placeholder="Ingrese el nombre del cliente" autocomplete="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">WhatsApp del cliente:</label>
+                    <input type="tel" id="telefono" placeholder="Ej: 3534123456 (código de área + número)" autocomplete="tel">
+                    <p class="fecha-entrega__ayuda">Se guarda en tu celular para no volver a escribirlo</p>
+                </div>
+
+                <!-- AGREGAR ARTÍCULOS - SECCIÓN UNIFICADA -->
+                <div class="form-group">
+                    <label class="label-seccion">🛒 Agregar Artículos</label>
+                    
+                    <!-- Botones de Categoría -->
+                    <div class="categoria-buttons">
+                        <button type="button" class="btn-categoria btn-categoria--active" data-categoria="producto" onclick="cambiarCategoria('producto', this)">
+                            <span class="btn-icon">📦</span> Producto
+                        </button>
+                        <button type="button" class="btn-categoria" data-categoria="liquido" onclick="cambiarCategoria('liquido', this)">
+                            <span class="btn-icon">💧</span> Líquido
+                        </button>
+                        <button type="button" class="btn-categoria" data-categoria="granel" onclick="cambiarCategoria('granel', this)">
+                            <span class="btn-icon">🚚</span> A granel
+                        </button>
+                    </div>
+
+                    <!-- Sección de Búsqueda (Producto) -->
+                    <div id="seccion-producto" class="seccion-dinamica seccion-dinamica--visible">
+                        <div class="form-grid">
+                            <div class="form-group form-group--no-margin">
+                                <label for="productoSelect">Seleccionar Producto:</label>
+                                <select id="productoSelect">
+                                    <option value="">-- Elige un producto --</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group--no-margin">
+                                <label>Cantidad</label>
+                                <div class="cantidad-stepper">
+                                    <div class="cantidad-stepper__control">
+                                        <button type="button" class="cantidad-stepper__btn" onclick="ajustarCantidad('productoQty', -1)" aria-label="Menos">−</button>
+                                        <div class="cantidad-stepper__valor">
+                                            <span class="cantidad-stepper__numero" id="productoQtyDisplay">1</span>
+                                            <span class="cantidad-stepper__unidad" id="productoQtyUnidad">unidad</span>
+                                        </div>
+                                        <button type="button" class="cantidad-stepper__btn" onclick="ajustarCantidad('productoQty', 1)" aria-label="Más">+</button>
+                                    </div>
+                                    <input type="hidden" id="productoQty" value="1">
+                                    <p class="cantidad-stepper__ayuda">📦 Se cuenta por <strong>unidad</strong> (1, 2, 3…)</p>
+                                </div>
+                            </div>
+                            <div id="filakilos" class="form-group form-group--no-margin" style="display: none;">
+                                <label for="productoKilos">Kilos:</label>
+                                <input type="number" id="productoKilos" min="0.1" step="0.1" value="1" placeholder="Cantidad de kilos">
+                            </div>
+                            <div class="form-grid__btn-end">
+                                <button type="button" class="btn-agregar btn--full" onclick="agregarProductoSeleccionado()">➕ Agregar</button>
+                            </div>
+                        </div>
+                        <div id="productosAgregados" class="lista-agregados lista-agregados--productos"></div>
+                    </div>
+
+                    <!-- Sección de Líquidos -->
+                    <div id="seccion-liquido" class="seccion-dinamica">
+                        <div class="form-grid">
+                            <div class="form-group form-group--no-margin">
+                                <label for="liquidoSelect">Seleccionar Líquido:</label>
+                                <select id="liquidoSelect">
+                                    <option value="">-- Elige un líquido --</option>
+                                    <option value="Alcohol puro">Alcohol puro</option>
+                                    <option value="Alcohol de quemar">Alcohol de quemar</option>
+                                    <option value="Lavandina">Lavandina</option>
+                                    <option value="Lavandina en gel">Lavandina en gel</option>
+                                    <option value="Lavandina R/blanca">Lavandina R/blanca</option>
+                                    <option value="Lavandina R/color">Lavandina R/color</option>
+                                    <option value="Abrillantador P/lavavajillas">Abrillantador P/lavavajillas</option>
+                                    <option value="Jabon en gel P/lavavajillas">Jabon en gel P/lavavajillas</option>
+                                    <option value="Liquido P/lampazo C/cera Fragancia frutilla">Liquido P/lampazo C/cera Fragancia frutilla</option>
+                                    <option value="Liquido P/lampazo siliconado y perfumado">Liquido P/lampazo siliconado y perfumado</option>
+                                    <option value="Liquido lampazo plus">Liquido lampazo plus</option>
+                                    <option value="Perfume P/ropa al alcohol">Perfume P/ropa al alcohol</option>
+                                    <option value="Perfume P/ropa al agua">Perfume P/ropa al agua</option>
+                                    <option value="Perfumina">Perfumina</option>
+                                    <option value="Cloro">Cloro</option>
+                                    <option value="Clarificante Precipitante">Clarificante Precipitante</option>
+                                    <option value="Alguicida">Alguicida</option>
+                                    <option value="Cloro granulado">Cloro granulado</option>
+                                    <option value="Cloro granulado multifuncion">Cloro granulado multifuncion</option>
+                                    <option value="Regulador pH">Regulador pH</option>
+                                    <option value="Suavizante celeste Clasico">Suavizante celeste Clasico</option>
+                                    <option value="Suavizante Blanco Clasico">Suavizante Blanco Clasico</option>
+                                    <option value="Suavizante comfort">Suavizante comfort</option>
+                                    <option value="Suavizante coniglio">Suavizante coniglio</option>
+                                    <option value="Suavizante vivere">Suavizante vivere</option>
+                                    <option value="Suavizante Downy Doble Perfume">Suavizante Downy Doble Perfume</option>
+                                    <option value="Vinagre de limpieza">Vinagre de limpieza</option>
+                                    <option value="Jabon liquido ala/suav. premium">Jabon liquido ala/suav. premium</option>
+                                    <option value="Jabon liquido desengrasante">Jabon liquido desengrasante</option>
+                                    <option value="Jabon liquido Famat/suav. Doble perfume">Jabon liquido Famat/suav. Doble perfume</option>
+                                    <option value="Jabon liquido ariel premium">Jabon liquido ariel premium</option>
+                                    <option value="Jabon liquido ropa fina">Jabon liquido ropa fina</option>
+                                    <option value="Jabon liquido skip premium">Jabon liquido skip premium</option>
+                                    <option value="Jabon liquido ARIEL Eco">Jabon liquido ARIEL Eco</option>
+                                    <option value="Jabon skip con suavizante">Jabon skip con suavizante</option>
+                                    <option value="Jabon liquido skip eco">Jabon liquido skip eco</option>
+                                    <option value="Jabon liquido Ala c/suavizante eco">Jabon liquido Ala c/suavizante eco</option>
+                                    <option value="Jabon liquido extra c/suavizante">Jabon liquido extra c/suavizante</option>
+                                    <option value="Creolina">Creolina</option>
+                                    <option value="Detergente conc. Neutro">Detergente conc. Neutro</option>
+                                    <option value="Detergente Nacarado">Detergente Nacarado</option>
+                                    <option value="Detergente de Glicerina">Detergente de Glicerina</option>
+                                    <option value="Detergente industrial">Detergente industrial</option>
+                                    <option value="Detergente T/Cif">Detergente T/Cif</option>
+                                    <option value="Detergente conc-neutro puro">Detergente conc-neutro puro</option>
+                                    <option value="Desinfectante aerosol lysoform">Desinfectante aerosol lysoform</option>
+                                    <option value="Desodorante de ambiente glade">Desodorante de ambiente glade</option>
+                                    <option value="Desodorante de ambiente poett">Desodorante de ambiente poett</option>
+                                    <option value="Doy Pack limpia vidrio">Doy Pack limpia vidrio</option>
+                                    <option value="Doy Pack lysoform">Doy Pack lysoform</option>
+                                    <option value="Aerosol para lampazo">Aerosol para lampazo</option>
+                                    <option value="Difusor aromatico con varillas">Difusor aromatico con varillas</option>
+                                    <option value="Lata en gel mini k78">Lata en gel mini k78</option>
+                                    <option value="Lata en gel mini glade">Lata en gel mini glade</option>
+                                    <option value="Lubricante en aerosol Escudo">Lubricante en aerosol Escudo</option>
+                                    <option value="Silicona aerosol k78">Silicona aerosol k78</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group--no-margin">
+                                <label>Cantidad</label>
+                                <div class="cantidad-stepper">
+                                    <div class="cantidad-stepper__control">
+                                        <button type="button" class="cantidad-stepper__btn" onclick="ajustarCantidad('liquidoLitros', -1)" aria-label="Menos">−</button>
+                                        <div class="cantidad-stepper__valor">
+                                            <span class="cantidad-stepper__numero" id="liquidoLitrosDisplay">1</span>
+                                            <span class="cantidad-stepper__unidad" id="liquidoLitrosUnidad">litro</span>
+                                        </div>
+                                        <button type="button" class="cantidad-stepper__btn" onclick="ajustarCantidad('liquidoLitros', 1)" aria-label="Más">+</button>
+                                    </div>
+                                    <input type="hidden" id="liquidoLitros" value="1">
+                                    <p class="cantidad-stepper__ayuda">💧 Se mide en <strong>litros</strong> — mínimo 0,5 L</p>
+                                </div>
+                            </div>
+                            <div class="form-grid__btn-end">
+                                <button type="button" class="btn-agregar btn--full" onclick="agregarLiquidoNuevo()">➕ Agregar</button>
+                            </div>
+                        </div>
+                        <div id="filaAroma" class="fila-aroma">
+                            <label for="aromaSelect">Fragancia:</label>
+                            <select id="aromaSelect">
+                                <option value="">-- Elige una fragancia --</option>
+                            </select>
+                        </div>
+                        <div id="liquidosAgregados" class="lista-agregados lista-agregados--liquidos"></div>
+                    </div>
+
+                    <!-- Sección A Granel -->
+                    <div id="seccion-granel" class="seccion-dinamica">
+                        <div class="form-grid">
+                            <div class="form-group form-group--no-margin">
+                                <label for="granelSelect">Seleccionar Producto a Granel:</label>
+                                <select id="granelSelect">
+                                    <option value="">-- Elige un producto --</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group--no-margin">
+                                <label>Cantidad</label>
+                                <div class="cantidad-stepper">
+                                    <div class="cantidad-stepper__control">
+                                        <button type="button" class="cantidad-stepper__btn" onclick="ajustarCantidad('granelKilos', -1)" aria-label="Menos">−</button>
+                                        <div class="cantidad-stepper__valor">
+                                            <span class="cantidad-stepper__numero" id="granelKilosDisplay">1</span>
+                                            <span class="cantidad-stepper__unidad" id="granelKilosUnidad">kilo</span>
+                                        </div>
+                                        <button type="button" class="cantidad-stepper__btn" onclick="ajustarCantidad('granelKilos', 1)" aria-label="Más">+</button>
+                                    </div>
+                                    <input type="hidden" id="granelKilos" value="1">
+                                    <p class="cantidad-stepper__ayuda">🚚 Se vende por <strong>kilo</strong> — mínimo 0,1 kg (0,1 · 0,2 · 0,3…)</p>
+                                </div>
+                            </div>
+                            <div class="form-grid__btn-end">
+                                <button type="button" class="btn-agregar btn--full" onclick="agregarGranelSeleccionado()">➕ Agregar</button>
+                            </div>
+                        </div>
+                        <div id="granelAgregados" class="lista-agregados lista-agregados--granel"></div>
+                    </div>
+                </div>
+
+                <!-- FECHA -->
+                <div class="form-group">
+                    <label for="entrega">Fecha de Entrega:</label>
+                    <input type="date" id="entrega" required>
+                    <p class="fecha-entrega__ayuda">Solo podés elegir hoy o fechas futuras</p>
+                </div>
+
+                <!-- MÉTODO DE PAGO -->
+                <div class="form-group">
+                    <label class="label-seccion">Método de pago:</label>
+                    <div class="metodo-pago-opciones">
+                        <label class="metodo-pago-opcion">
+                            <input type="radio" name="metodoPago" value="efectivo">
+                            <span class="metodo-pago-opcion__caja">
+                                <span class="metodo-pago-opcion__icono" aria-hidden="true">💵</span>
+                                <span class="metodo-pago-opcion__texto">Efectivo</span>
+                            </span>
+                        </label>
+                        <label class="metodo-pago-opcion">
+                            <input type="radio" name="metodoPago" value="transferencia">
+                            <span class="metodo-pago-opcion__caja">
+                                <span class="metodo-pago-opcion__icono" aria-hidden="true">🏦</span>
+                                <span class="metodo-pago-opcion__texto">Transferencia</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- TRANSFERENCIA -->
+                <div class="form-group">
+                    <label class="label-seccion">Datos para Transferencia:</label>
+                    <div class="info-box info-box--amarillo">
+                        <p><strong>📱 Alias CVU:</strong></p>
+                        <input type="text" value="FAMAT.LIMPIEZA" readonly class="input-readonly input-readonly--amarillo input-copiable" onclick="copiarAlias()" title="Hacé clic para copiar">
+                        <p class="info-box__nota">✓ Hacé clic para copiar el alias</p>
+                    </div>
+                </div>
+
+                <!-- NOTAS -->
+                <div class="form-group">
+                    <label for="notas">Notas Adicionales:</label>
+                    <input type="text" id="notas" placeholder="Notas o comentarios especiales">
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-whatsapp" onclick="enviarPorWhatsApp()">📨 Enviar</button>
+                    <button class="btn-limpiar" onclick="confirmarLimpiar()">🔄 Limpiar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Pantalla de éxito al enviar pedido -->
+    <div id="pantallaExito" class="pantalla-exito" aria-hidden="true">
+        <div class="pantalla-exito__caja">
+            <div class="pantalla-exito__icono">✓</div>
+            <h2 class="pantalla-exito__titulo">¡Pedido registrado con éxito!</h2>
+            <p class="pantalla-exito__texto">Tu pedido ya fue cargado en el sistema.</p>
+            <p class="pantalla-exito__subtitulo">Por favor, avisá a:</p>
+            <div class="pantalla-exito__contacto">
+                <span class="pantalla-exito__nombre">Gabriela Dubois</span>
+                <a href="tel:+5493534247019" class="pantalla-exito__telefono">+54 9 353 424-7019</a>
+                <button type="button" class="pantalla-exito__copiar" onclick="copiarTelefonoGabriela()">📋 Copiar número</button>
+            </div>
+            <p class="pantalla-exito__ayuda">Por si no tenés su contacto guardado, podés llamarla o escribirle por WhatsApp.</p>
+            <div class="pantalla-exito__acciones">
+                <a id="btnWaGabriela" href="#" class="pantalla-exito__btn pantalla-exito__btn--wa" target="_blank" rel="noopener">📱 Avisar por WhatsApp</a>
+                <button type="button" class="pantalla-exito__btn pantalla-exito__btn--nuevo" onclick="cerrarPantallaExito()">Hacer otro pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-famat.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("sw.js").catch(function (err) {
+            console.error("Error al registrar el Service Worker:", err);
+          });
+        });
+      }
+    </script>
+</body>
+</html>
