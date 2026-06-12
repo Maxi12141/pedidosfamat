@@ -234,359 +234,24 @@ function ordenarAlfabeticamente(lista) {
     return [...lista].sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
 }
 
-// ═══ ARTÍCULOS (Cantidad: 1, 2, 3...) ═══
-const articulosDB = ordenarAlfabeticamente([
-    "Aerosol ambar",
-    "Aerosol para lampazo",
-    "Difusor aromatico con varillas",
-    "Aerosol saphirus",
-    "Saphirus textil",
-    "Aceite esencial ambar",
-    "Saphirus touch repuesto + dispositivo",
-    "Saphirus touch repuesto",
-    "Dispenser analogico atomizador",
-    "Pinitos Walker",
-    "Pinitos k78",
-    "Bolitas perfumadas",
-    "Lata en gel mini k78",
-    "Lata en gel mini glade",
-    "Lubricante en aerosol Escudo",
-    "Silicona aerosol k78",
-    "Cepillo p/auto",
-    "Alfombra baño 60x40 blanco oriental",
-    "Alfombra de goma ventosa",
-    "Alfombra doble base 35x50",
-    "Balde centrifugo tambor acero",
-    "Balde Mopero 16.5L",
-    "Baldes x14",
-    "Baldes x12",
-    "Baldes x9",
-    "Repuesto escurridor P/balde 16,5l",
-    "Cabo P/balde centrifugo + Porta mopa 1,45m",
-    "Comedero chico",
-    "Comedero grande",
-    "Palita sanitaria",
-    "Barre Hojas Profesional (grande)",
-    "barre hojas reforzado negro",
-    "Bolsas de consorcio 60x90 Rosario",
-    "Bolsas de consorcio 85x110 Rosario",
-    "Bolsas de consorcio 90x120 Rosario",
-    "Bolsas de residuos 45x60 Rosario",
-    "Broches madera rayita",
-    "Broches plasticos-madera Make",
-    "Broches plasticos rayita",
-    "Burletes doble de friselina",
-    "Burletes doble de cuerina",
-    "Burletes zocalo doble Premiun",
-    "Cabo de madera 1,20",
-    "Cabo de madera 1,50",
-    "Cabo de madera 2,00",
-    "Cabo de madera P/Barrendero",
-    "Cabo extrensibles 3,00 mts",
-    "Cabo extrensibles 1,50 mts",
-    "Cabo metalico forrados 1,20",
-    "Canasto P/broches",
-    "Canasto redondo mediano",
-    "canasto P/ropa cuadrado con tapa",
-    "Canasto P/ropa redondo con tapa",
-    "Cepillo limpia techo Hongo",
-    "Cepillo uñas C/piedra pomez",
-    "Cepillo uñas x2",
-    "Cepillo uñas c/u",
-    "cepillo lava-zapatilla",
-    "Cepillo planchita y cerrado",
-    "Cepillos limpia inodoro chico",
-    "Cepillos limpia inodoro grande",
-    "Cepillo limpia inodoro c/base extralimp",
-    "Cepillos limpia inodoro c/base salzano",
-    "Cepillos limpia inodoro c/base importado Chico",
-    "Cesto de basura 12 l Grande",
-    "Cesto de basura 5 l chico",
-    "Cesto de basura c/pedal 13lts",
-    "PROTECTOR C/ GANCHOS CORTINA BAÑO",
-    "Cortina baño C/protector y ganchos",
-    "Cortina plastica de tiras",
-    "Desinfectante aerosol lysoform",
-    "Desodorante de ambiente glade",
-    "Desodorante de ambiente fraganss",
-    "Desodorante de ambiente poett",
-    "Desodorante en crema rexona 60gr",
-    "Escarbadiente con dispenser",
-    "Escoba de paja",
-    "escobeta azteca",
-    "Escobillon grande florinda/inca",
-    "Escobillon mediano huarpe/pandi",
-    "Escobillon laqueado simil madera",
-    "Escobillon chico irizar",
-    "Esponjas de acero Make 30grs",
-    "Esponjas de acero Make 50grs",
-    "Esponjas de acero make12g",
-    "esponjas dorada de 12grs",
-    "Esponjas dorada de 15grs",
-    "Esponjas dorada Make 30grs",
-    "Esponjas antiadherentes Make",
-    "Esponja extralimp plus",
-    "Esponja de baño chica",
-    "Esponja de baño grande",
-    "Esponja fibra verde make",
-    "Rejillas Dorada doble cara",
-    "Esponjas Amarillas salvauñas MORTINER",
-    "Esponjas Amarillas salvauñas make",
-    "Fosforos x220",
-    "Fosforos x400",
-    "Encendedor",
-    "Franela",
-    "Fuentos x 13lts",
-    "fuenton 24lts",
-    "Fuentos x20lts",
-    "Fuenton x30lts",
-    "Gatillos (Blanco)",
-    "gatillos (profesional)",
-    "Guantes pequeños P",
-    "Guantes grandes G",
-    "Guantes medianos M",
-    "Insecticidas en aerosol raid comun",
-    "Insecticidas en aerosol shelton",
-    "Cebo en bloque raticida geltex",
-    "Cebo cucarachas geltek 6 estaciones",
-    "Granulado raticida ultra plus",
-    "Cebo mosca granulado",
-    "Naftalina",
-    "NAFTALINA x 200",
-    "Mata cucaracha acido borico",
-    "Jabon detergente Quitamanchas",
-    "Jabon en pan Blanco Ala 200",
-    "Jabon en pan gigante 200",
-    "Jabon en pan cosquin 200",
-    "Jabonetas x 1 Qsens",
-    "Jabonetas x 3 Qsens",
-    "kit lampazo barrendero+armazon 35cm",
-    "Kit Lampazo barrendero+Armazon 60cm",
-    "Kit Lampazo barrendero+Armazon 80cm",
-    "Kit Lampazo barrendero+Armazon 100cm",
-    "Repuesto Lampazo Barrendero 35cm",
-    "Repuesto Lampazo Barrendero 60cm",
-    "Repuesto Lampazo Barrendero 80cm",
-    "Repuesto Lampazo Barrendero 100cm",
-    "Lampazo x80cm Barrendero MADERA",
-    "Lampazo de hilo n°40",
-    "Lampazo azul",
-    "Lampazo pabilo n 40",
-    "Limpia vidrios+esponjas make 20cm",
-    "Limpia vidrios+esponjas make 30cm",
-    "limpia vidrios M/corto",
-    "Lustra muebles Ceramicol",
-    "Lustra Muebles BLEM",
-    "Mata mosca paleta",
-    "Mata mosca manito",
-    "Gillete prestobarba",
-    "Mopa centrifugo repuesto",
-    "Mopa paño",
-    "Mopa algodón blanca-Gris MT",
-    "Mopa microfibra",
-    "Pala c/cabo Mapuche",
-    "Pala cabo economica COLORES",
-    "Pala c/cabo NEGRA",
-    "Pala mano c/goma",
-    "Pala de mano sin goma",
-    "Palangana 4lts",
-    "Palangana 6lts",
-    "palangana 9LTS",
-    "Papel Alumino 28cm",
-    "Papel film 30mts",
-    "Papel cocina maxi rollo",
-    "Papel de cocina x3 Elegante",
-    "Papel higienico x4 elegante",
-    "Papel higienico x4 hiar",
-    "papel higienico x6 Niraflor",
-    "Papel higienico x6 elegante",
-    "Papel higienco suelto cordial",
-    "Papel higienico dispenser 8 x300",
-    "Papel higienico dispenser 8 x 300 c/u",
-    "Bobina Industrial 25x400 x2",
-    "Bobina industral 25x400 C/U",
-    "Toallas intercaladas C/U",
-    "Tollas intercaladas 20X24 x 10",
-    "Pasa cera Grande",
-    "Pastillas p/inodoro Pato (canasta)",
-    "Pastillas P/inodoro Pato Purific/glade adhesivo",
-    "Pilas energizer AA",
-    "Pilas energizer AAA",
-    "Kit para analisis PH cloro",
-    "Saca hoja P/pileta",
-    "Saca hoja P/pileta bolsa",
-    "Manguera flotante corrugada x metro 5mts o 10mts",
-    "Cabo telescopico 3,6 mts",
-    "Cabo aluminio p/saca hojas",
-    "Barrefondo 8 ruedas",
-    "Barrefondo media luna",
-    "Boya hongo P/piletas (P/200)",
-    "Boya hongo Pileta lona (P/50)",
-    "Boya grande C/regulador (P/200)",
-    "Boya grande satelital (P/200)",
-    "Boya chica satelital (P/50)",
-    "Plumero de pabilo blanco",
-    "Plumero algodon hilo grueso",
-    "Plumero algodon hilo super grueso",
-    "Pulverizador multiuso 500cc",
-    "Pulverizador multiuso 750cc",
-    "Pulverizador multiuso 1L",
-    "Repelente off",
-    "repelente 911",
-    "Tabletas P/mosquitos x12",
-    "Tabletas P/mosquitos C/U",
-    "Raid espiral x unidad",
-    "Raid espiral x12",
-    "Rejilla bar especial linea 10",
-    "Rejillas microfibra 60x40",
-    "Rejillas Esponjas linea 10",
-    "Rejillas lava autos liviana linea 10",
-    "Rejilla paños multiusos sueltos",
-    "REPASADORES DE TOLLA Make",
-    "Repasadores tollas fribran",
-    "Repasadores Eco",
-    "Repasadores toalla mister trapo",
-    "Sapito riego",
-    "Manguera 15 mts 1/2",
-    "Manguera 25 mts 1/2",
-    "Carbon neutro sagrada madre C/U (Caja de 24)",
-    "Bomba humo sagrada madre x4",
-    "Cono cascada x10",
-    "sahumerios banglades x10 finos",
-    "Sahumerios triple duracion x 5 gruesos",
-    "Secador doble Salzano 41cm",
-    "Secador doble Salzano 35 cm",
-    "SECADOR DOBLE ECO house",
-    "Secador de piso salzano",
-    "Sopapa Grande20CM",
-    "Sopapa Chica11CM",
-    "Sopapa C/mango",
-    "Trampa P/mosca",
-    "Trapo de pisos blancos",
-    "Trapo de pisos consorcios blanco MT",
-    "Trapo de pisos consorcios gris MT",
-    "Trapo de pisos gris MT",
-    "Trapo de pisos rayados linea 10",
-    "Trapo de pisos blanco linea 10",
-    "Trapo de pisos gris linea 10",
-    "Velas Cortas 10cm",
-    "Velas Largas 20cm",
-    "Virulana x10 (lana de acero)",
-    "Toallas femeninas doncella x 8",
-    "Protector diario doncella x20",
-    "Algodón doncella"
-]);
+function obtenerLineasPorTipo(tipo) {
+    return CATALOGO_LINEAS.filter(function (entrada) { return entrada.tipo === tipo; });
+}
 
-// ═══ LÍQUIDOS (Cantidad: ml, litros) ═══
-const liquidosDBList = ordenarAlfabeticamente([
-    "Abrillantador P/lavavajillas",
-    "Alcohol de quemar",
-    "Alcohol puro",
-    "Alguicida",
-    "Bombas blanqueadoras",
-    "Bombas efervescentes",
-    "Cera 8M incolora",
-    "Cera blem",
-    "Cera Echo incolora",
-    "Cera Glo Cot",
-    "Cera Negra-Roja 8M",
-    "Cif en Crema",
-    "Clarificante Precipitante",
-    "Cloro",
-    "Cloro granulado",
-    "Cloro granulado multifuncion",
-    "Composicion P/baños quimicos",
-    "Crema enjuague canino",
-    "Creolina",
-    "Derribante",
-    "Desengrasante cocina",
-    "Desengrasante industrial",
-    "Desinfectante P/piso",
-    "Desodorante P/piso",
-    "Detergente conc-neutro puro",
-    "Detergente conc. Neutro",
-    "Detergente de Glicerina",
-    "Detergente industrial",
-    "Detergente Nacarado",
-    "Detergente T/Cif",
-    "Doy Pack limpia vidrio",
-    "Doy Pack lysoform",
-    "Insecticida perfumado T/flit",
-    "Jabon Ace",
-    "Jabon en gel P/lavavajillas",
-    "Jabon liquido ala/suav. premiun",
-    "Jabon liquido Ala c/suavizante eco",
-    "Jabon liquido ariel premiun",
-    "Jabon liquido ARIEL Eco",
-    "Jabon liquido desengrasante",
-    "Jabon liquido extra c/suavizante",
-    "Jabon liquido Famat/suav. Doble perfume",
-    "Jabon liquido ropa fina",
-    "Jabon liquido skip eco",
-    "Jabon liquido skip premiun",
-    "Jabon maravilla",
-    "Jabon skip con suavizante",
-    "Jabon Tocador",
-    "Jabon ultra perfumado",
-    "Lava Matic",
-    "Lavandina",
-    "Lavandina en gel",
-    "Lavandina R/blanca",
-    "Lavandina R/color",
-    "Limpiador desengrasante para manos",
-    "Limpiador desinfectante para baños",
-    "Limpia Horno",
-    "Limpia vidrios",
-    "Liquido lampazo plus",
-    "Liquido P/lampazo C/cera Fragancia frutilla",
-    "Liquido P/lampazo siliconado y perfumado",
-    "Lustra mueble cremoso",
-    "Mata alacran",
-    "Pastilla de cloro 50g",
-    "Pastilla limpia lavarropas C/U",
-    "Pastilla limpia lavarropas x12 (caja)",
-    "Pastillas de cloro triple accion C/U 200g",
-    "Pastillas de cloro triple accion x 5 200g",
-    "Perfume P/ropa al agua",
-    "Perfume P/ropa al alcohol",
-    "Perfumina",
-    "Porcelanato (CERA)",
-    "Quita manchas oxi",
-    "Quita manchas Trenet",
-    "Quita Sarro",
-    "Regulador pH",
-    "Renovador Vinilico (silicona)",
-    "Repelente P/mosquito",
-    "Repelente para perRo y gato (NO Toxico)",
-    "Sal P/lavavaijllas",
-    "Shaapoo P/autos",
-    "Shampoo canino",
-    "Shampoo para autos sin frotar 850cc en 20l de auga",
-    "Shampoo-enjuague sedal",
-    "Silicona de vainilla y Transparente",
-    "Suavizante Blanco Clasico",
-    "Suavizante celeste Clasico",
-    "Suavizante comfort",
-    "Suavizante coniglio",
-    "Suavizante Downy Doble Perfume",
-    "Suavizante ultra perfumado",
-    "Suavizante vivere",
-    "Vinagre de limpieza"
-]);
+function obtenerListaPlana(tipo) {
+    const vistos = new Map();
+    obtenerLineasPorTipo(tipo).forEach(function (entrada) {
+        entrada.items.forEach(function (nombre) {
+            const clave = nombre.trim().toLowerCase();
+            if (!vistos.has(clave)) vistos.set(clave, nombre);
+        });
+    });
+    return ordenarAlfabeticamente([...vistos.values()]);
+}
 
-// ═══ A GRANEL (Por kilo) ═══
-const granelDBList = ordenarAlfabeticamente([
-    "Balanceado P/conejo",
-    "Bicarbonato de sodio",
-    "Comida P/cachorro Vagoneta",
-    "Comida P/gato Vagoneta",
-    "comida P/perro Vagoneta",
-    "jabon en polvo",
-    "jabon en polvo clorado",
-    "Percarbonato",
-    "Polvo limpiador tipo odex",
-    "Soda Cautica granulado"
-]);
+const articulosDB = obtenerListaPlana('producto');
+const liquidosDBList = obtenerListaPlana('liquido');
+const granelDBList = obtenerListaPlana('granel');
 
 // Cargar selects al iniciar
 window.addEventListener('DOMContentLoaded', function() {
@@ -598,11 +263,46 @@ window.addEventListener('DOMContentLoaded', function() {
 
 // ── FUNCIONES PARA CARGAR SELECTS ─────────────────────────
 
-function cargarOpcionesSelect(selectId, items) {
-    const select = document.getElementById(selectId);
+function cargarLineasSelect(lineaSelectId, tipo) {
+    const select = document.getElementById(lineaSelectId);
     if (!select) return;
 
-    ordenarAlfabeticamente(items).forEach(nombre => {
+    if (typeof CATALOGO_LINEAS === 'undefined') {
+        console.error('No se cargó catalogo-famat.js');
+        return;
+    }
+
+    obtenerLineasPorTipo(tipo).forEach(function (entrada) {
+        const option = document.createElement('option');
+        option.value = entrada.linea;
+        option.textContent = entrada.linea;
+        select.appendChild(option);
+    });
+}
+
+function cargarItemsDeLinea(itemSelectId, tipo, lineaNombre) {
+    const select = document.getElementById(itemSelectId);
+    if (!select) return;
+
+    select.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+
+    if (!lineaNombre) {
+        placeholder.textContent = '-- Primero elige una línea --';
+        select.appendChild(placeholder);
+        select.disabled = true;
+        return;
+    }
+
+    const entrada = obtenerLineasPorTipo(tipo).find(function (e) { return e.linea === lineaNombre; });
+    if (!entrada) return;
+
+    placeholder.textContent = '-- Elige un producto --';
+    select.appendChild(placeholder);
+    select.disabled = false;
+
+    ordenarAlfabeticamente(entrada.items).forEach(function (nombre) {
         const option = document.createElement('option');
         option.value = nombre;
         option.textContent = nombre;
@@ -610,16 +310,37 @@ function cargarOpcionesSelect(selectId, items) {
     });
 }
 
+function configurarSelectorPorLinea(lineaSelectId, itemSelectId, tipo) {
+    const lineaSelect = document.getElementById(lineaSelectId);
+    if (!lineaSelect) return;
+
+    lineaSelect.addEventListener('change', function () {
+        cargarItemsDeLinea(itemSelectId, tipo, this.value);
+        if (itemSelectId === 'liquidoSelect') {
+            actualizarSelectorFragancia('');
+        }
+    });
+}
+
+function resetearSelectorCategoria(lineaSelectId, itemSelectId, tipo) {
+    const lineaSelect = document.getElementById(lineaSelectId);
+    if (lineaSelect) lineaSelect.value = '';
+    cargarItemsDeLinea(itemSelectId, tipo, '');
+}
+
 function cargarProductos() {
-    cargarOpcionesSelect('productoSelect', articulosDB);
+    cargarLineasSelect('lineaProductoSelect', 'producto');
+    configurarSelectorPorLinea('lineaProductoSelect', 'productoSelect', 'producto');
 }
 
 function cargarLiquidos() {
-    cargarOpcionesSelect('liquidoSelect', liquidosDBList);
+    cargarLineasSelect('lineaLiquidoSelect', 'liquido');
+    configurarSelectorPorLinea('lineaLiquidoSelect', 'liquidoSelect', 'liquido');
 }
 
 function cargarGranel() {
-    cargarOpcionesSelect('granelSelect', granelDBList);
+    cargarLineasSelect('lineaGranelSelect', 'granel');
+    configurarSelectorPorLinea('lineaGranelSelect', 'granelSelect', 'granel');
 }
 
 // ── FUNCIÓN PARA CAMBIAR CATEGORÍA ────────────────────────
@@ -666,7 +387,7 @@ function agregarProductoSeleccionado() {
     });
     
     actualizarListaProductos();
-    select.value = '';
+    resetearSelectorCategoria('lineaProductoSelect', 'productoSelect', 'producto');
     resetearStepper('productoQty', 1);
 }
 
@@ -730,7 +451,7 @@ function agregarLiquidoNuevo() {
     });
 
     actualizarListaLiquidos();
-    select.value = '';
+    resetearSelectorCategoria('lineaLiquidoSelect', 'liquidoSelect', 'liquido');
     actualizarSelectorFragancia('');
     resetearStepper('liquidoLitros', 1);
 }
@@ -785,7 +506,7 @@ function agregarGranelSeleccionado() {
     });
     
     actualizarListaGranel();
-    select.value = '';
+    resetearSelectorCategoria('lineaGranelSelect', 'granelSelect', 'granel');
     resetearStepper('granelKilos', 1);
 }
 

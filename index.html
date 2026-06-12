@@ -61,10 +61,16 @@
                     <!-- Sección de Búsqueda (Producto) -->
                     <div id="seccion-producto" class="seccion-dinamica seccion-dinamica--visible">
                         <div class="form-grid">
+                            <div class="form-group form-group--no-margin form-group--linea">
+                                <label for="lineaProductoSelect">Línea:</label>
+                                <select id="lineaProductoSelect">
+                                    <option value="">-- Elige una línea --</option>
+                                </select>
+                            </div>
                             <div class="form-group form-group--no-margin">
-                                <label for="productoSelect">Seleccionar Producto:</label>
-                                <select id="productoSelect">
-                                    <option value="">-- Elige un producto --</option>
+                                <label for="productoSelect">Producto:</label>
+                                <select id="productoSelect" disabled>
+                                    <option value="">-- Primero elige una línea --</option>
                                 </select>
                             </div>
                             <div class="form-group form-group--no-margin">
@@ -96,10 +102,16 @@
                     <!-- Sección de Líquidos -->
                     <div id="seccion-liquido" class="seccion-dinamica">
                         <div class="form-grid">
+                            <div class="form-group form-group--no-margin form-group--linea">
+                                <label for="lineaLiquidoSelect">Línea:</label>
+                                <select id="lineaLiquidoSelect">
+                                    <option value="">-- Elige una línea --</option>
+                                </select>
+                            </div>
                             <div class="form-group form-group--no-margin">
-                                <label for="liquidoSelect">Seleccionar Líquido:</label>
-                                <select id="liquidoSelect">
-                                    <option value="">-- Elige un líquido --</option>
+                                <label for="liquidoSelect">Líquido:</label>
+                                <select id="liquidoSelect" disabled>
+                                    <option value="">-- Primero elige una línea --</option>
                                 </select>
                             </div>
                             <div class="form-group form-group--no-margin">
@@ -133,10 +145,16 @@
                     <!-- Sección A Granel -->
                     <div id="seccion-granel" class="seccion-dinamica">
                         <div class="form-grid">
+                            <div class="form-group form-group--no-margin form-group--linea">
+                                <label for="lineaGranelSelect">Línea:</label>
+                                <select id="lineaGranelSelect">
+                                    <option value="">-- Elige una línea --</option>
+                                </select>
+                            </div>
                             <div class="form-group form-group--no-margin">
-                                <label for="granelSelect">Seleccionar Producto a Granel:</label>
-                                <select id="granelSelect">
-                                    <option value="">-- Elige un producto --</option>
+                                <label for="granelSelect">Producto a granel:</label>
+                                <select id="granelSelect" disabled>
+                                    <option value="">-- Primero elige una línea --</option>
                                 </select>
                             </div>
                             <div class="form-group form-group--no-margin">
@@ -237,7 +255,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-famat.js"></script>
-    <script src="script.js"></script>
+    <script src="catalogo-famat.js?v=3"></script>
+    <script src="script.js?v=3"></script>
 
     <script>
       if ("serviceWorker" in navigator) {

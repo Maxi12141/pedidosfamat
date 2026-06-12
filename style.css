@@ -107,6 +107,12 @@ input:focus, select:focus {
     background-color: #f0f4ff;
 }
 
+.form-group--linea select {
+    border-color: #667eea;
+    background-color: #f8f9ff;
+    font-weight: 600;
+}
+
 .input-disabled {
     background-color: #f0f0f0;
     color: #999;

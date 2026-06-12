@@ -1,14 +1,17 @@
-const CACHE_NAME = "famat-pedidos-v1";
+const CACHE_NAME = "famat-pedidos-v3";
 const APP_SHELL = [
   "/",
   "/index.html",
   "/style.css",
   "/script.js",
+  "/catalogo-famat.js",
   "/supabase-famat.js",
   "/manifest.json",
   "/icon-192x192.png",
   "/icon-512x512.png"
 ];
+
+const NETWORK_FIRST_FILES = ["/script.js", "/catalogo-famat.js", "/supabase-famat.js"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -52,6 +55,20 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => caches.match(request).then((res) => res || caches.match("/index.html")))
+    );
+    return;
+  }
+
+  // Network-first para JS del catálogo (siempre versión nueva).
+  if (NETWORK_FIRST_FILES.some((path) => url.pathname.endsWith(path))) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+          return response;
+        })
+        .catch(() => caches.match(request))
     );
     return;
   }
