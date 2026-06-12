@@ -230,8 +230,12 @@ function resetearStepper(inputId, valor) {
 
 // ── BASE DE DATOS CATEGORIZADA ─────────────────────────────
 
+function ordenarAlfabeticamente(lista) {
+    return [...lista].sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
+}
+
 // ═══ ARTÍCULOS (Cantidad: 1, 2, 3...) ═══
-const articulosDB = [
+const articulosDB = ordenarAlfabeticamente([
     "Aerosol ambar",
     "Aerosol para lampazo",
     "Difusor aromatico con varillas",
@@ -455,119 +459,130 @@ const articulosDB = [
     "Toallas femeninas doncella x 8",
     "Protector diario doncella x20",
     "Algodón doncella"
-];
+]);
 
 // ═══ LÍQUIDOS (Cantidad: ml, litros) ═══
-const liquidosDBList = [
-    "Alcohol puro",
+const liquidosDBList = ordenarAlfabeticamente([
+    "Abrillantador P/lavavajillas",
+    "Aerosol para lampazo",
     "Alcohol de quemar",
-    "Quita Sarro",
-    "Composicion P/baños quimicos",
-    "Limpiador desinfectante para baños",
-    "Bombas efervescentes",
-    "Jabon maravilla",
+    "Alcohol puro",
+    "Alguicida",
     "Bombas blanqueadoras",
-    "Cera blem",
-    "Cera Glo Cot",
+    "Bombas efervescentes",
     "Cera 8M incolora",
+    "Cera blem",
     "Cera Echo incolora",
+    "Cera Glo Cot",
     "Cera Negra-Roja 8M",
-    "Porcelanato (CERA)",
-    "Creolina",
-    "Desengrasante industrial",
-    "Desengrasante cocina",
     "Cif en Crema",
-    "Limpia Horno",
+    "Clarificante Precipitante",
+    "Cloro",
+    "Cloro granulado",
+    "Cloro granulado multifuncion",
+    "Composicion P/baños quimicos",
+    "Crema enjuague canino",
+    "Creolina",
     "Derribante",
-    "Perfumina",
-    "Detergente conc. neutro",
-    "Detergente Nacarado",
+    "Desengrasante cocina",
+    "Desengrasante industrial",
+    "Desinfectante aerosol lysoform",
+    "Desodorante de ambiente fraganss",
+    "Desodorante de ambiente glade",
+    "Desodorante de ambiente poett",
+    "Desodorante en crema rexona 60gr",
+    "Detergente conc-neutro puro",
+    "Detergente conc. Neutro",
+    "Detergente de Glicerina",
     "Detergente industrial",
+    "Detergente Nacarado",
     "Detergente T/Cif",
-    "Detergente puro",
+    "Difusor aromatico con varillas",
+    "Doy Pack limpia vidrio",
+    "Doy Pack lysoform",
     "Insecticida perfumado T/flit",
-    "Repelente P/mosquito",
-    "Jabon liquido ala/suav. premiun",
-    "Jabon liquido desengrasante",
-    "jabon liquido Famat/suav. Doble perfume",
-    "Jabon liquido ariel premiun",
-    "Jabon liquido ropa fina",
-    "Jabon liquido skip premiun",
     "Jabon Ace",
-    "Jabon ultra perfumado",
-    "Jabon liquido ARIEL",
-    "Jabon skip con suavizante",
-    "Jabon liquido skip",
+    "Jabon en gel P/lavavajillas",
+    "Jabon liquido ala/suav. premium",
     "Jabon liquido Ala c/suavizante",
+    "Jabon liquido Ala c/suavizante eco",
+    "Jabon liquido ariel premium",
+    "Jabon liquido ARIEL",
+    "Jabon liquido ARIEL Eco",
+    "Jabon liquido desengrasante",
     "Jabon liquido extra c/suavizante",
+    "Jabon liquido Famat/suav. Doble perfume",
+    "Jabon liquido ropa fina",
+    "Jabon liquido skip",
+    "Jabon liquido skip eco",
+    "Jabon liquido skip premium",
+    "Jabon maravilla",
+    "Jabon skip con suavizante",
     "Jabon Tocador",
+    "Jabon ultra perfumado",
+    "Lata en gel mini glade",
+    "Lata en gel mini k78",
+    "Lava Matic",
     "Lavandina",
     "Lavandina en gel",
     "Lavandina R/blanca",
     "Lavandina R/color",
-    "Abrillantador P/lavavajillas",
-    "Sal P/lavavaijllas",
-    "Jabon en gel P/lavavajillas",
+    "Limpiador desengrasante para manos",
+    "Limpiador desinfectante para baños",
+    "Limpia Horno",
     "Limpia vidrios",
-    "Lava Matic",
-    "Pastilla limpia lavarropas x12 (caja)",
-    "Pastilla limpia lavarropas C/U",
+    "Liquido lampazo plus",
     "Liquido P/lampazo C/cera Fragancia frutilla",
     "Liquido P/lampazo siliconado y perfumado",
-    "Liquido lampazo plus",
+    "Lubricante en aerosol Escudo",
     "Lustra mueble cremoso",
     "Mata alacran",
-    "Cloro",
-    "Pastillas de cloro triple accion x 5 200g",
-    "Pastillas de cloro triple accion C/U 200g",
     "Pastilla de cloro 50g",
-    "Clarificante Presipitante",
-    "Alguicida",
-    "Cloro granulado",
-    "Cloro granulado multifuncion",
-    "Regulador ph",
-    "Quita manchas Trenet",
+    "Pastilla limpia lavarropas C/U",
+    "Pastilla limpia lavarropas x12 (caja)",
+    "Pastillas de cloro triple accion C/U 200g",
+    "Pastillas de cloro triple accion x 5 200g",
+    "Perfume P/ropa al agua",
+    "Perfume P/ropa al alcohol",
+    "Perfumina",
+    "Porcelanato (CERA)",
     "Quita manchas oxi",
+    "Quita manchas Trenet",
+    "Quita Sarro",
+    "Regulador pH",
+    "Renovador Vinilico (silicona)",
+    "Repelente P/mosquito",
     "Repelente para perRo y gato (NO Toxico)",
-    "Shampoo-enjuague sedal",
-    "Crema enjuague canino",
+    "Sal P/lavavaijllas",
+    "Shaapoo P/autos",
     "Shampoo canino",
+    "Shampoo para autos sin frotar 850cc en 20l de auga",
+    "Shampoo-enjuague sedal",
+    "Silicona aerosol k78",
+    "Silicona de vainilla y Transparente",
+    "Suavizante Blanco Clasico",
+    "Suavizante celeste Clasico",
     "Suavizante comfort",
     "Suavizante coniglio",
-    "Suavizante vivere",
     "Suavizante Downy Doble Perfume",
     "Suavizante ultra perfumado",
-    "vinagre de limpieza",
-    "Limpiador desengrasante para manos",
-    "Lata en gel mini k78",
-    "Lubricante en aerosol Escudo",
-    "Silicona aerosol k78",
-    "Desinfectante aerosol lysoform",
-    "Desodorante de ambiente glade",
-    "Desodorante de ambiente fraganss",
-    "Desodorante de ambiente poett",
-    "Desodorante en crema rexona 60gr",
-    "doy Pack limpia vidrio",
-    "Doy Pack lysoform",
-    "Shaapoo P/autos",
-    "Silicona de vainilla y Transparente",
-    "Shampoo para autos sin frotar 850cc en 20l de auga",
-    "Renovador Vinilico (silicona)"
-];
+    "Suavizante vivere",
+    "Vinagre de limpieza"
+]);
 
 // ═══ A GRANEL (Por kilo) ═══
-const granelDBList = [
-    "Comida P/gato Vagoneta",
-    "Comida P/cachorro Vagoneta",
-    "comida P/perro Vagoneta",
+const granelDBList = ordenarAlfabeticamente([
     "Balanceado P/conejo",
-    "Polvo limpiador tipo odex",
     "Bicarbonato de sodio",
-    "Percarbonato",
-    "jabon en polvo clorado",
+    "Comida P/cachorro Vagoneta",
+    "Comida P/gato Vagoneta",
+    "comida P/perro Vagoneta",
     "jabon en polvo",
+    "jabon en polvo clorado",
+    "Percarbonato",
+    "Polvo limpiador tipo odex",
     "Soda Cautica granulado"
-];
+]);
 
 // Cargar selects al iniciar
 window.addEventListener('DOMContentLoaded', function() {
@@ -579,43 +594,28 @@ window.addEventListener('DOMContentLoaded', function() {
 
 // ── FUNCIONES PARA CARGAR SELECTS ─────────────────────────
 
-function cargarProductos() {
-    const select = document.getElementById('productoSelect');
+function cargarOpcionesSelect(selectId, items) {
+    const select = document.getElementById(selectId);
     if (!select) return;
-    
-    articulosDB.forEach(producto => {
+
+    ordenarAlfabeticamente(items).forEach(nombre => {
         const option = document.createElement('option');
-        option.value = producto;
-        option.textContent = producto;
+        option.value = nombre;
+        option.textContent = nombre;
         select.appendChild(option);
     });
+}
+
+function cargarProductos() {
+    cargarOpcionesSelect('productoSelect', articulosDB);
 }
 
 function cargarLiquidos() {
-    const select = document.getElementById('liquidoSelect');
-    if (!select) return;
-    
-    liquidosDBList.forEach(liquido => {
-        // No agregar opciones que ya están duplicadas en el HTML original
-        if (!select.querySelector(`option[value="${liquido}"]`)) {
-            const option = document.createElement('option');
-            option.value = liquido;
-            option.textContent = liquido;
-            select.appendChild(option);
-        }
-    });
+    cargarOpcionesSelect('liquidoSelect', liquidosDBList);
 }
 
 function cargarGranel() {
-    const select = document.getElementById('granelSelect');
-    if (!select) return;
-    
-    granelDBList.forEach(granel => {
-        const option = document.createElement('option');
-        option.value = granel;
-        option.textContent = granel;
-        select.appendChild(option);
-    });
+    cargarOpcionesSelect('granelSelect', granelDBList);
 }
 
 // ── FUNCIÓN PARA CAMBIAR CATEGORÍA ────────────────────────
