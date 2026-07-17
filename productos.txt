@@ -1,0 +1,896 @@
+<<<<<<< HEAD
+	LINEA P/AUTO
+SA	Shaapoo  P/autos
+SV	Silicona de vainilla y Transparente
+LDM	Limpiador desengrasante para manos
+rvs	Renovador Vinilico (silicona)
+	LINEA ABSORVENTE DE HUMEDAD X KILO
+AH	Absorvente de humedad
+	LINEA DE ALCOHOL
+AP	Alcohol puro
+AQ	Alcohol de quemar
+	LINEA BAÑO
+QS	Quita Sarro
+LGH	Limpiador en gel T/harpic
+LDB	Limpiador desinfectante para baños
+	LINEA BLANQUEADOR  OPTIMO P/ROPA
+BO	Blanqueador optico
+	LINEA DE BICARBONATO
+b	Bicarbonato de sodio (x Kilo)
+	LINEA DE CERAS
+CB	Cera blem
+CGC	Cera Glo Cot
+C8	Cera 8M incolora
+CE	Cera Echo incolora
+CN	Cera Negra 8M
+CR	Cera Roja  8M
+	LINEA CREOLINA
+CREO	Creolina
+	LINEA COCINA
+DI	Desengrasante industrial 
+Dc	Desengrasante cocina
+CC	Cif en Crema
+PLO	Polvo limpiador tipo odex (x kilo)
+LH	Limpia Horno
+	LINEA DERRIBANTE P/INSECTO
+DE	Derribante
+	LINEA DESODORANTE P/PISO
+DP	Desodorante P/piso 
+	Desifectante P/piso
+	LINEA DETERGENTE
+DN	Detergente conc. Neutro
+DNACA	Detergente Nacarado
+DG	Detergente de Glicerina
+DIN	Detergente industrial
+DCIF	Detergente T/Cif
+DCP	Detergente conc-neutro puro
+	LINEA INSECTICIDA
+INSCJ	Insecticida casa jardin (Mosca y Mosquito) 
+INSF	Insecticida perfumado T/flit
+RM	Repelente P/mosquito
+LDB	LINEA JABON PREMIUM
+JAP	Jabon liquido ala/suav. premiun
+JD	Jabon liquido desengrasante
+JFS	jabon liquido Famat/suav. Doble perfume
+JARP	Jabon liquido ariel premiun
+JRF	Jabon liquido  ropa fina
+JSP	Jabon liquido skip premiun
+	LINEA JABON ECONOMICO
+JARE	Jabon liquido ARIEL Eco
+JSS	Jabon skip con suavizante
+JSE	Jabon liquido skip eco
+JAS	Jabon liquido Ala c/suavizante eco
+JES	Jabon liquido extra c/suavizante
+jace	Jabon Ace 
+	LINEA JABON EN POLVO X KILO
+JCLO	jabon en polvo clorado (x kilo)
+JPOLVO	jabon en polvo (x kilo)
+	LINEA JABON TOCADOR P/MANOS
+JT	jabon tocador 
+JTL	Jabon Tocador limplus
+	LINEA LAVANDINA
+L	Lavandina 
+Lgel	Lavandina en gel 
+LRB	Lavandina R/blanca
+LRC	Lavandina R/color
+	LINEA LAVAVAJILLAS
+ALV	Abrillantador P/lavavajillas
+SLV	Sal P/lavavaijllas
+JLV	Jabon en gel P/lavavajillas
+	LINEA LIMPIA VIDRIOS
+LV	Limpia vidrios
+	LINEA LIMPIADOR P/LAVARROPA
+lmatic	Lava Matic
+	LINEA LIQUIDO P/LAMPAZO
+LLC	Liquido P/lampazo C/cera Fragancia frutilla
+LLS	Liquido P/lampazo siliconado y perfumado
+LLP	Liquido lampazo plus
+	LINEA LUSTRA MUEBLES
+LMC	Lustra mueble cremoso
+	LINEA MATA ALACRAN
+mataal	Mata alacran
+	LINEA NAFTALINA X KILO
+NXK	NAFTALINAXKG
+	LINEA PERFUME P/ROPA
+PRAL	Perfume P/ropa al acohol
+pralv	Perfume P/ropa al acohol revivere
+PRAG	Perfume P/ropa al agua
+	LINEA PILETA
+CLO	Cloro
+PCX5	Pastillas de cloro triple accion x 5 200g
+PC200	Pastillas de cloro triple accion C/U 200g
+PC50	Pastilla de cloro  50g
+CLA	Clarificante Presipitante
+AL	Alguicida
+cg	Cloro granulado
+CGm	Cloro granulado multifuncion
+RPH	Regulador ph
+	LINEA QUITA MANCHAS P/ROPA
+QMT	Quita manchas Trenet
+QM	Quita manchas
+	LINEA REPELENTE P/PERROGATO
+RPG	Repelente para perRo y gato (NO Toxico)
+	LINEA SHAMPOO-ENGUAGE
+SE	Shampoo-enjuague sedal
+	LINEA SHAMPOO PERRO
+SP	Shampoo canino
+	LINEA SODA CAUTICA X KILO
+SCAU	Soda Cautica granulado (x kilo)
+	LINEA SUAVIZANTE CLASICO
+SCC	Suavizante celeste Clasico
+SCB	Suavizante Banco Clasico
+	LINEA SUAVIZANTE 
+SCON	Suavizante comfort
+SC	Suavizante coniglio
+Svive	Suavizante vivere
+SD	Suavizante Downy Doble Perfume
+	LINEA VINAGRE
+V	vinagre de  limpieza
+	LINEA MECANICO
+LDM	Limpiador desengrasante para manos
+	LINEA DE BOMBAS BLANQUEADORAS
+bb	Bombas blanqueadoras
+be	Bombas efervescentes
+jm	Jabon maravilla
+	                 ARTICULOS DE LIMPIEZA
+AA	Aerosol ambar
+Alam	Aerosol para lampazo
+Dv	Difusor aromatico con varillas
+AS	Aerosol saphirus
+at	Saphirus textil
+DA	Dispenser analogico atomizador
+	LINEA AUTO
+PW	Pinitos Walker
+PK78	Pinitos k78
+LGK78	Lata en gel mini k78
+LGG	Lata en gel mini glade
+BP	Bolitas perfumadas
+lae	Lubricante en aerosol Escudo
+SAK78	Silicona aerosol k78
+cpa	Cepillo p/auto
+	LINEA ALFOMBRAS
+AB	Alfombra baño 65x35
+AG	Alfombra de  goma
+AD	Alfombra doble base 35x50
+	LINEA BALDES
+BCTA	Balde centrifugo tambor acero 
+BCTAP	Balde centrifugo tambor acero doble premium
+BM	Balde mopero C/escurridor 16,5 lts oval
+B14	Baldes x14
+B12	Baldes x12
+B9	Baldes x9
+CIC	LINEA BALDE CENTRIFUGO REPUESTO 
+re	Repuesto escurridor P/balde 16,5l
+RC	cabos metalicos P/balde centrifugo
+PMg	Porta mopas P/balde giratorio
+bcdp	Balde centrifugo tambor acero doble premium
+	LINEA BALANCEADO ANIMALES
+CGV	Comida P/gato Vagoneta (a granel)
+CPC	Comida P/cachorro Vagoneta (a granel)
+CPV	comida P/perro Vagoneta (a granel)
+CGL	Comida P/gato liwue
+CPS	Comida P/perro sabrosito
+MG	Mezcla P/ Gallina
+BCO	Balanceado P/conejo (a granel)
+ccpg	Comeder chico
+cgpg	Comedero grande
+psg	Palita sanitaria
+PM	Piedritas mineral
+	LINEA BARRE HOJAS
+BHG	Barre Hojas Profesional (grande)
+BHC	barre hojas reforzado negro
+	LINEA DE BOLSAS
+B60X90L	Bolsa de residuos 60x90 FENOGLIO
+B60X90R	Bolsas de consorcio 60x90 Rosario
+B85X110R	Bolsas de consorcio 85x110 Rosario
+B90X120R	Bolsas de consorcio 90x120 Rosario
+B45X60D	Bolsas de residuos 45x60 duo
+B45X60R	Bolsas de residuos 45x60 Rosario
+	LINEA BROCHES
+BMR	Broches madera rayita
+BPM	Broches plasticos MAKE
+BPC	Broches plasticos CLIP
+	LINEA BURLETTES P/PUERTA
+BF	Burletes doble de friselina
+BC	Burletes doble de cuerina
+BDP	Burletes zocalo doble Premiun
+	LINEA DE CABOS
+C120E	cabo de madera 1,20 eco
+C120P	Cabo de madera 1,20 (pino)
+C150	Cabo de madera 1,50
+C200	Cabo de madera 2,00
+CB	Cabo de madera P/Barrendero
+CE150	Cabo extrensibles 1,5 mts
+CE200	Cabo extrensibles 2,00 mts
+CF120	Cabo metalico forrados 1,20
+	LINEA CABO SOPORTE
+SC	Soporte para dos cabo autodhesivo
+	LINEA CANASTO
+CPB	Canasto P/broches
+CRM	Canasto redondo mediano
+crh	canasto para ropa cuadrado
+CRg	Canasto para ropa FLORIDA
+	LINEA CEPILLOS
+CLTH	Cepillo limpia techo Hongo
+CLTG	Cepillo limpia techo GLOBO
+CUP	Cepillo uñas C/piedra pomez
+CUX2	Cepillo uñas x2
+CU1	Cepillo uñas c/u
+CZ	cepillo lava-zapatilla
+CCA	Cepillo planchita y cerrado
+CIBE	Cepillolimpiainodoro c/base extralimp
+CIC	Cepillos limpia inodoro chico
+CIG	Cepillos limpia inodoro grande
+CIBS	Cepillos limpia inodoro c/base salzano
+CIBC	Cepillos limpia inodoro c/base importado
+	LINEA CESTO DE BASURA
+CB12	Cesto de basura 12 l Grande
+CB5	Cesto de basura 5 l chico
+CBP13	Cesto debasura c/pedal 13lts
+	LINEA CORTINA BAÑO
+CBAÑO	Cortina baño C/protector y ganchos
+	LINEA CORTINA PLASTICA
+CP	Cortina plastica pesada 90
+	LINEA DESODORANTE-DESINFECTANTE
+DAL	Desinfectante aerosol lysofrm
+DGl	Desodorante de ambiente glade
+DPO	Desodorante de ambiente poett
+DRC	Desodorante rexona  odorono 60gr
+	LINEA DOY PACK
+DPV	doy Pack limpia vidrio
+DPL	Doy Pack lysoform
+	Linea Escarbadientes
+	Escarbadiente con dispenser
+	Linea Escobas - Escobillon
+epg	Escoba de paja cabo grueso
+Epf	Escoba de paja cabo fino
+EA	escobeta azteca
+EG	Escobillon grande florinda/inca
+EM	Escobillon mediano huarpe/pandi
+ESM	Escobillon laqueado simil madera
+EC	Escobillon chico irizar
+	LINEA ESPONJAS
+EA30	Esponjas de acero grande Make 30grs
+EA12	Esponjas de acero make12g
+EDEA	Esponjas de acero DEA
+EAE	Esponjas de acero ECONOMICA
+ED12	esponjas dorada de 12grs
+ED30	Esponjas dorada de 30grs
+Eam	Esponjas antiadherentes Make
+Eep	Esponja extralimp plus
+EDE	Esponjas de bronces ecooo
+	Esponja de baño chica
+EB	Esponja de baño grande
+EAL	Esponjas Amarillas (LISA)
+EAB	Esponjas economicas Amarillas (Batuque)
+EPN	Esponja fibra parrillera (negra)
+Efam	Esponja fibra abrasiva make
+Ecef	Esponja fibra extrafuerte (celeste)
+EASUT	Esponjas Amarillas salvauñas task
+RDDC	Rejillas Dorada doble cara
+Easum	Esponjas Amarillas salvauñas make
+P6	LINEA FOSFOROS
+F22BD	Fosforo x220 buenos dias
+F220	Fosforos x220
+F400	Fosforos x400
+	LINEA FRANELAS
+F	Franela Naranja MT
+	LINEA FUENTON
+F15	Fuentos x 13lts
+F24	fuenton 24lts
+F20	Fuentos x20lts
+F30	Fuenton x30lts
+	LINEA GATILLOS 
+GB	Gatillos (Blanco)
+G	gatillos (profesional)
+	LINEA GUANTES
+GP	Guantes pequeños P
+GG	Guantes grandes G
+GM	Guantes medianos M
+	LINEA INSECTICIDA
+IR	Insecticidas en aerosol raid comun
+ISC	insecticidas shelton cucarachas
+IS	Insecticidas en aerosol shelton
+cbrg	Cebo en bloque raticida geltex
+grup	Granulado raticida ultra plus
+ccg	cebo cucarachas geltek
+cmg	Cebo mosca granulado
+	LINEA JABON EN PAN 
+JA120	jabon en pan astro 120
+JA150	jabon en pan astro 150
+JQM	Jabon detergente Quitamanchas
+JA200	Jabon en pan Blanco Ala coco
+jg200	Jabon en pan gigante x200
+jc200	Jabon en pan cosquin x200
+	LINEA JABONETA
+jre	Jabonetas Rexonas
+JQX3	Jabonetas x 3 Qsens
+	LAMPAZO-REPUESTO BARRENDERO
+	kit lampazo barrendero+armazon 35cm ROYCO
+	Kit Lampazo barrendero+Armazon 40cm
+	Kit Lampazo barrendero+Armazon 60cm
+	Kit Lampazo barrendero+Armazon 80cm
+r40	Repuesto Lampazo Barrendero 40cm
+R60	Repuesto Lampazo Barrendero 60cm
+R80	Repuesto Lampazo Barrendero 80cm
+Rbm	Lampazo x80cm Barrendero MADERA
+RL40	LINEA LAMPAZO COMUN
+Lhilo	Lampazo de hilo n°40
+LP	Lampazo pabilo n 40
+	LINEA LIMPIA VIDRIOS
+LV20	Limpia vidrios 20cm
+LV30	Limpia vidrios 30cm
+LVC	limpia vidrios M/corto
+	LINEA LUSTRA MUEBLES
+LMCE	Lustra muebles Ceramicol
+LMb	Lustra Muebles BLEM
+	LINEA MATA MOSCA
+MMP	Mata mosca paleta
+mflit	Maquina de flit
+MMM	Mata mosca manito
+	LINEA MAQUINA AFEITAR
+MA	Gillete prestobarba
+	LINEA MOPAS
+MCR	Mopa  centrifugo repuesto
+MP+a	Mopa plana + armazon
+mpaño	Mopa paño
+mgmt	Mopa algodón gris  MR TRAPO
+MbMt	Mopa algodón blanca MR TRAPO
+	LINEA PALAS BASURA
+PCELG	Pala c/cabo y goma euro lanin c/goma
+PCE	Pala cabo economica
+PCEL	Pala c/cabo euro lanin
+PMG	Pala mano c/goma
+PM	Pala de mano sin goma
+	LINEA PALANGANAS
+P4	Palangana 4lts
+P6	Palangana 6lts
+P9	palangana 9LTS
+	LINEA PAPELES
+PA	Papel Alumino 28cm
+PF	Papel film 30mts
+PCMR	Papel cocina maxi rollo
+PCX3E	Papel de cocina Elegante x3
+PHX4E	Papel higienico x4 elegante
+phx4b	papel higienico x4 buddy
+PHX4H	Papel higienico x4 hiar
+PHX6N	papel higienico x6 Niraflor
+phx6E	Papel higienico x6 elegante
+PCS	Papel higienco suelto cordial 
+	LINEA PAPELES DISPENSER
+PHDX8	Papel higienico dispenser 8 x300 
+PHDX1	Papel higienico dispenser 8 x 300 c/u
+BIX2	Bobina Industrial  25x400 x2 NAPOLEON
+BIX1	Bobina industral 25x400 C/U NAPOLEON
+TIX1	Toallas intercaladas C/U
+TIX10	Tollas intercaladas 20X24 x 10
+	LINEA PASA CERA
+PSG	Pasa cera Grande
+	LINEA PASTILLA INODORO
+PIC	Pastillas p/inodoro  Pato (canasta) 
+PI5en1	Pastillas p/inodoro canasta solida 5 en 1
+PIA	Pastillas P/inodoro Pato Purific/glade adhesivo
+PIM	Pastilla inodoro P/mochilas Pato
+	LINEA PILAS
+PEAA	Pilas energizer AA
+PEAAA	Pilas energizer AAA
+	LINEA PILETA
+ka	Kit para analisis PH cloro
+SHP	Saca hoja P/pileta
+SHBP	Saca hoja P/pileta bolsa
+CASH	Cabo aluminio p/saca hojas
+BF8R	Barrefondo 8 ruedas
+BFML	Barrefondo media luna
+BP200	Boya hongo P/piletas (P/200)
+BP50	Boya mini Pileta lona (P/50)
+BS200	Boya grande satelital (P/200)
+BS50	Boya chica satelital (P/50)
+	LINEA PLUMEROS
+PP	Plumero de pabilo blanco
+phc	Plumero algodon hilo grueso
+PHg	Plumero algodon hilo super grueso
+	LINEA PULVERIZADOR
+p500	Pulverizador multiuso 500cc
+P750	Pulverizador multiuso 750cc
+	LINEA REPELENTE- ESPIRAL
+ROFF	Repelente off
+R911	repelente 911
+TMX12	Tabletas P/mosquitos x12
+TMCU	Tabletas P/mosquitos C/U
+ECU	Raid espiral x unidad 
+EX12	Raid espiral x12
+	LINEA REJILLAS
+Rcms	Rejilla de color Magic Soft
+Rpmt	Rejilla pabilo MT
+ram	Rejilla americana MAKE
+RM60x40	Rejillas microfibra Laffitte 60x40
+RM35X35	Rejillas Microfibra Laffitte 35x35
+Rem	Rejillas Esponjas Make
+PS	Rejilla paños multiusos sueltos
+	LINEA REPASADORES
+RCM	REPASADORES DE TOLLA Make 
+RF	Repasadores tollas fribran
+RT	Repasadores toalla mister trapo
+	LINEA RIEGO
+S	Sapito riego
+M	Manguera 15 mts 1/2
+	LINEA SAHUMERIOS
+PSh	Porta Sahumerios
+CX1	Carbon neutro sagrada madre  C/U (Caja de 24)
+BHX4	Bomba humo sagrada madre x4
+CX10	Sahumerios cono cascada x10
+SFX10	sahumerios banglades x10 finos
+STDX5	Sahumerios triple duracion x 5 gruesos
+	LINEA SECADOR PARA PISO
+SbP	SECADOR DOBLE PREMIUM blanco
+SDE	SECADOR DOBLE ECO
+SPS	Secador de piso salzano
+	LINEA SOPAPA
+SG20	Sopapa Grande20CM
+SC11	Sopapa Chica11CM
+	LINEA TRAPO PISO
+TB	Trapo de pisos blancos
+TBC	Trapo de pisos consorcios blanco MT
+TGC	Trapo de pisos consorcios gris MT
+TG	Trapo de pisos gris MT
+trl10	Trapo de pisos rayados linea 10
+tbl10	Trapo de pisos blanco linea 10
+tgl10	Trapo de pisos gris linea 10
+	LINEA VELAS
+VC	Velas Cortas 10cm
+VL	Velas Largas 20cm
+	LINEA VIRULANA
+vx10	Virulana x10  (lana de acero)
+	LINEA TOALLA FEMENINA
+TFA	Toallas femeninas Always ajuste perfecto x 8 
+TFd	Toallas femeninas doncella x 8
+	Protector diario doncella x20
+=======
+	LINEA P/AUTO
+SA	Shaapoo  P/autos
+SV	Silicona de vainilla y Transparente
+LDM	Limpiador desengrasante para manos
+rvs	Renovador Vinilico (silicona)
+	LINEA ABSORVENTE DE HUMEDAD X KILO
+AH	Absorvente de humedad
+	LINEA DE ALCOHOL
+AP	Alcohol puro
+AQ	Alcohol de quemar
+	LINEA BAÑO
+QS	Quita Sarro
+LGH	Limpiador en gel T/harpic
+LDB	Limpiador desinfectante para baños
+	LINEA BLANQUEADOR  OPTIMO P/ROPA
+BO	Blanqueador optico
+	LINEA DE BICARBONATO
+b	Bicarbonato de sodio (x Kilo)
+	LINEA DE CERAS
+CB	Cera blem
+CGC	Cera Glo Cot
+C8	Cera 8M incolora
+CE	Cera Echo incolora
+CN	Cera Negra 8M
+CR	Cera Roja  8M
+	LINEA CREOLINA
+CREO	Creolina
+	LINEA COCINA
+DI	Desengrasante industrial 
+Dc	Desengrasante cocina
+CC	Cif en Crema
+PLO	Polvo limpiador tipo odex (x kilo)
+LH	Limpia Horno
+	LINEA DERRIBANTE P/INSECTO
+DE	Derribante
+	LINEA DESODORANTE P/PISO
+DP	Desodorante P/piso 
+	Desifectante P/piso
+	LINEA DETERGENTE
+DN	Detergente conc. Neutro
+DNACA	Detergente Nacarado
+DG	Detergente de Glicerina
+DIN	Detergente industrial
+DCIF	Detergente T/Cif
+DCP	Detergente conc-neutro puro
+	LINEA INSECTICIDA
+INSCJ	Insecticida casa jardin (Mosca y Mosquito) 
+INSF	Insecticida perfumado T/flit
+RM	Repelente P/mosquito
+LDB	LINEA JABON PREMIUM
+JAP	Jabon liquido ala/suav. premiun
+JD	Jabon liquido desengrasante
+JFS	jabon liquido Famat/suav. Doble perfume
+JARP	Jabon liquido ariel premiun
+JRF	Jabon liquido  ropa fina
+JSP	Jabon liquido skip premiun
+	LINEA JABON ECONOMICO
+JARE	Jabon liquido ARIEL Eco
+JSS	Jabon skip con suavizante
+JSE	Jabon liquido skip eco
+JAS	Jabon liquido Ala c/suavizante eco
+JES	Jabon liquido extra c/suavizante
+jace	Jabon Ace 
+	LINEA JABON EN POLVO X KILO
+JCLO	jabon en polvo clorado (x kilo)
+JPOLVO	jabon en polvo (x kilo)
+	LINEA JABON TOCADOR P/MANOS
+JT	jabon tocador 
+JTL	Jabon Tocador limplus
+	LINEA LAVANDINA
+L	Lavandina 
+Lgel	Lavandina en gel 
+LRB	Lavandina R/blanca
+LRC	Lavandina R/color
+	LINEA LAVAVAJILLAS
+ALV	Abrillantador P/lavavajillas
+SLV	Sal P/lavavaijllas
+JLV	Jabon en gel P/lavavajillas
+	LINEA LIMPIA VIDRIOS
+LV	Limpia vidrios
+	LINEA LIMPIADOR P/LAVARROPA
+lmatic	Lava Matic
+	LINEA LIQUIDO P/LAMPAZO
+LLC	Liquido P/lampazo C/cera Fragancia frutilla
+LLS	Liquido P/lampazo siliconado y perfumado
+LLP	Liquido lampazo plus
+	LINEA LUSTRA MUEBLES
+LMC	Lustra mueble cremoso
+	LINEA MATA ALACRAN
+mataal	Mata alacran
+	LINEA NAFTALINA X KILO
+NXK	NAFTALINAXKG
+	LINEA PERFUME P/ROPA
+PRAL	Perfume P/ropa al acohol
+pralv	Perfume P/ropa al acohol revivere
+PRAG	Perfume P/ropa al agua
+	LINEA PILETA
+CLO	Cloro
+PCX5	Pastillas de cloro triple accion x 5 200g
+PC200	Pastillas de cloro triple accion C/U 200g
+PC50	Pastilla de cloro  50g
+CLA	Clarificante Presipitante
+AL	Alguicida
+cg	Cloro granulado
+CGm	Cloro granulado multifuncion
+RPH	Regulador ph
+	LINEA QUITA MANCHAS P/ROPA
+QMT	Quita manchas Trenet
+QM	Quita manchas
+	LINEA REPELENTE P/PERROGATO
+RPG	Repelente para perRo y gato (NO Toxico)
+	LINEA SHAMPOO-ENGUAGE
+SE	Shampoo-enjuague sedal
+	LINEA SHAMPOO PERRO
+SP	Shampoo canino
+	LINEA SODA CAUTICA X KILO
+SCAU	Soda Cautica granulado (x kilo)
+	LINEA SUAVIZANTE CLASICO
+SCC	Suavizante celeste Clasico
+SCB	Suavizante Banco Clasico
+	LINEA SUAVIZANTE 
+SCON	Suavizante comfort
+SC	Suavizante coniglio
+Svive	Suavizante vivere
+SD	Suavizante Downy Doble Perfume
+	LINEA VINAGRE
+V	vinagre de  limpieza
+	LINEA MECANICO
+LDM	Limpiador desengrasante para manos
+	LINEA DE BOMBAS BLANQUEADORAS
+bb	Bombas blanqueadoras
+be	Bombas efervescentes
+jm	Jabon maravilla
+	                 ARTICULOS DE LIMPIEZA
+AA	Aerosol ambar
+Alam	Aerosol para lampazo
+Dv	Difusor aromatico con varillas
+AS	Aerosol saphirus
+at	Saphirus textil
+DA	Dispenser analogico atomizador
+	LINEA AUTO
+PW	Pinitos Walker
+PK78	Pinitos k78
+LGK78	Lata en gel mini k78
+LGG	Lata en gel mini glade
+BP	Bolitas perfumadas
+lae	Lubricante en aerosol Escudo
+SAK78	Silicona aerosol k78
+cpa	Cepillo p/auto
+	LINEA ALFOMBRAS
+AB	Alfombra baño 65x35
+AG	Alfombra de  goma
+AD	Alfombra doble base 35x50
+	LINEA BALDES
+BCTA	Balde centrifugo tambor acero 
+BCTAP	Balde centrifugo tambor acero doble premium
+BM	Balde mopero C/escurridor 16,5 lts oval
+B14	Baldes x14
+B12	Baldes x12
+B9	Baldes x9
+CIC	LINEA BALDE CENTRIFUGO REPUESTO 
+re	Repuesto escurridor P/balde 16,5l
+RC	cabos metalicos P/balde centrifugo
+PMg	Porta mopas P/balde giratorio
+bcdp	Balde centrifugo tambor acero doble premium
+	LINEA BALANCEADO ANIMALES
+CGV	Comida P/gato Vagoneta (a granel)
+CPC	Comida P/cachorro Vagoneta (a granel)
+CPV	comida P/perro Vagoneta (a granel)
+CGL	Comida P/gato liwue
+CPS	Comida P/perro sabrosito
+MG	Mezcla P/ Gallina
+BCO	Balanceado P/conejo (a granel)
+ccpg	Comeder chico
+cgpg	Comedero grande
+psg	Palita sanitaria
+PM	Piedritas mineral
+	LINEA BARRE HOJAS
+BHG	Barre Hojas Profesional (grande)
+BHC	barre hojas reforzado negro
+	LINEA DE BOLSAS
+B60X90L	Bolsa de residuos 60x90 FENOGLIO
+B60X90R	Bolsas de consorcio 60x90 Rosario
+B85X110R	Bolsas de consorcio 85x110 Rosario
+B90X120R	Bolsas de consorcio 90x120 Rosario
+B45X60D	Bolsas de residuos 45x60 duo
+B45X60R	Bolsas de residuos 45x60 Rosario
+	LINEA BROCHES
+BMR	Broches madera rayita
+BPM	Broches plasticos MAKE
+BPC	Broches plasticos CLIP
+	LINEA BURLETTES P/PUERTA
+BF	Burletes doble de friselina
+BC	Burletes doble de cuerina
+BDP	Burletes zocalo doble Premiun
+	LINEA DE CABOS
+C120E	cabo de madera 1,20 eco
+C120P	Cabo de madera 1,20 (pino)
+C150	Cabo de madera 1,50
+C200	Cabo de madera 2,00
+CB	Cabo de madera P/Barrendero
+CE150	Cabo extrensibles 1,5 mts
+CE200	Cabo extrensibles 2,00 mts
+CF120	Cabo metalico forrados 1,20
+	LINEA CABO SOPORTE
+SC	Soporte para dos cabo autodhesivo
+	LINEA CANASTO
+CPB	Canasto P/broches
+CRM	Canasto redondo mediano
+crh	canasto para ropa cuadrado
+CRg	Canasto para ropa FLORIDA
+	LINEA CEPILLOS
+CLTH	Cepillo limpia techo Hongo
+CLTG	Cepillo limpia techo GLOBO
+CUP	Cepillo uñas C/piedra pomez
+CUX2	Cepillo uñas x2
+CU1	Cepillo uñas c/u
+CZ	cepillo lava-zapatilla
+CCA	Cepillo planchita y cerrado
+CIBE	Cepillolimpiainodoro c/base extralimp
+CIC	Cepillos limpia inodoro chico
+CIG	Cepillos limpia inodoro grande
+CIBS	Cepillos limpia inodoro c/base salzano
+CIBC	Cepillos limpia inodoro c/base importado
+	LINEA CESTO DE BASURA
+CB12	Cesto de basura 12 l Grande
+CB5	Cesto de basura 5 l chico
+CBP13	Cesto debasura c/pedal 13lts
+	LINEA CORTINA BAÑO
+CBAÑO	Cortina baño C/protector y ganchos
+	LINEA CORTINA PLASTICA
+CP	Cortina plastica pesada 90
+	LINEA DESODORANTE-DESINFECTANTE
+DAL	Desinfectante aerosol lysofrm
+DGl	Desodorante de ambiente glade
+DPO	Desodorante de ambiente poett
+DRC	Desodorante rexona  odorono 60gr
+	LINEA DOY PACK
+DPV	doy Pack limpia vidrio
+DPL	Doy Pack lysoform
+	Linea Escarbadientes
+	Escarbadiente con dispenser
+	Linea Escobas - Escobillon
+epg	Escoba de paja cabo grueso
+Epf	Escoba de paja cabo fino
+EA	escobeta azteca
+EG	Escobillon grande florinda/inca
+EM	Escobillon mediano huarpe/pandi
+ESM	Escobillon laqueado simil madera
+EC	Escobillon chico irizar
+	LINEA ESPONJAS
+EA30	Esponjas de acero grande Make 30grs
+EA12	Esponjas de acero make12g
+EDEA	Esponjas de acero DEA
+EAE	Esponjas de acero ECONOMICA
+ED12	esponjas dorada de 12grs
+ED30	Esponjas dorada de 30grs
+Eam	Esponjas antiadherentes Make
+Eep	Esponja extralimp plus
+EDE	Esponjas de bronces ecooo
+	Esponja de baño chica
+EB	Esponja de baño grande
+EAL	Esponjas Amarillas (LISA)
+EAB	Esponjas economicas Amarillas (Batuque)
+EPN	Esponja fibra parrillera (negra)
+Efam	Esponja fibra abrasiva make
+Ecef	Esponja fibra extrafuerte (celeste)
+EASUT	Esponjas Amarillas salvauñas task
+RDDC	Rejillas Dorada doble cara
+Easum	Esponjas Amarillas salvauñas make
+P6	LINEA FOSFOROS
+F22BD	Fosforo x220 buenos dias
+F220	Fosforos x220
+F400	Fosforos x400
+	LINEA FRANELAS
+F	Franela Naranja MT
+	LINEA FUENTON
+F15	Fuentos x 13lts
+F24	fuenton 24lts
+F20	Fuentos x20lts
+F30	Fuenton x30lts
+	LINEA GATILLOS 
+GB	Gatillos (Blanco)
+G	gatillos (profesional)
+	LINEA GUANTES
+GP	Guantes pequeños P
+GG	Guantes grandes G
+GM	Guantes medianos M
+	LINEA INSECTICIDA
+IR	Insecticidas en aerosol raid comun
+ISC	insecticidas shelton cucarachas
+IS	Insecticidas en aerosol shelton
+cbrg	Cebo en bloque raticida geltex
+grup	Granulado raticida ultra plus
+ccg	cebo cucarachas geltek
+cmg	Cebo mosca granulado
+	LINEA JABON EN PAN 
+JA120	jabon en pan astro 120
+JA150	jabon en pan astro 150
+JQM	Jabon detergente Quitamanchas
+JA200	Jabon en pan Blanco Ala coco
+jg200	Jabon en pan gigante x200
+jc200	Jabon en pan cosquin x200
+	LINEA JABONETA
+jre	Jabonetas Rexonas
+JQX3	Jabonetas x 3 Qsens
+	LAMPAZO-REPUESTO BARRENDERO
+	kit lampazo barrendero+armazon 35cm ROYCO
+	Kit Lampazo barrendero+Armazon 40cm
+	Kit Lampazo barrendero+Armazon 60cm
+	Kit Lampazo barrendero+Armazon 80cm
+r40	Repuesto Lampazo Barrendero 40cm
+R60	Repuesto Lampazo Barrendero 60cm
+R80	Repuesto Lampazo Barrendero 80cm
+Rbm	Lampazo x80cm Barrendero MADERA
+RL40	LINEA LAMPAZO COMUN
+Lhilo	Lampazo de hilo n°40
+LP	Lampazo pabilo n 40
+	LINEA LIMPIA VIDRIOS
+LV20	Limpia vidrios 20cm
+LV30	Limpia vidrios 30cm
+LVC	limpia vidrios M/corto
+	LINEA LUSTRA MUEBLES
+LMCE	Lustra muebles Ceramicol
+LMb	Lustra Muebles BLEM
+	LINEA MATA MOSCA
+MMP	Mata mosca paleta
+mflit	Maquina de flit
+MMM	Mata mosca manito
+	LINEA MAQUINA AFEITAR
+MA	Gillete prestobarba
+	LINEA MOPAS
+MCR	Mopa  centrifugo repuesto
+MP+a	Mopa plana + armazon
+mpaño	Mopa paño
+mgmt	Mopa algodón gris  MR TRAPO
+MbMt	Mopa algodón blanca MR TRAPO
+	LINEA PALAS BASURA
+PCELG	Pala c/cabo y goma euro lanin c/goma
+PCE	Pala cabo economica
+PCEL	Pala c/cabo euro lanin
+PMG	Pala mano c/goma
+PM	Pala de mano sin goma
+	LINEA PALANGANAS
+P4	Palangana 4lts
+P6	Palangana 6lts
+P9	palangana 9LTS
+	LINEA PAPELES
+PA	Papel Alumino 28cm
+PF	Papel film 30mts
+PCMR	Papel cocina maxi rollo
+PCX3E	Papel de cocina Elegante x3
+PHX4E	Papel higienico x4 elegante
+phx4b	papel higienico x4 buddy
+PHX4H	Papel higienico x4 hiar
+PHX6N	papel higienico x6 Niraflor
+phx6E	Papel higienico x6 elegante
+PCS	Papel higienco suelto cordial 
+	LINEA PAPELES DISPENSER
+PHDX8	Papel higienico dispenser 8 x300 
+PHDX1	Papel higienico dispenser 8 x 300 c/u
+BIX2	Bobina Industrial  25x400 x2 NAPOLEON
+BIX1	Bobina industral 25x400 C/U NAPOLEON
+TIX1	Toallas intercaladas C/U
+TIX10	Tollas intercaladas 20X24 x 10
+	LINEA PASA CERA
+PSG	Pasa cera Grande
+	LINEA PASTILLA INODORO
+PIC	Pastillas p/inodoro  Pato (canasta) 
+PI5en1	Pastillas p/inodoro canasta solida 5 en 1
+PIA	Pastillas P/inodoro Pato Purific/glade adhesivo
+PIM	Pastilla inodoro P/mochilas Pato
+	LINEA PILAS
+PEAA	Pilas energizer AA
+PEAAA	Pilas energizer AAA
+	LINEA PILETA
+ka	Kit para analisis PH cloro
+SHP	Saca hoja P/pileta
+SHBP	Saca hoja P/pileta bolsa
+CASH	Cabo aluminio p/saca hojas
+BF8R	Barrefondo 8 ruedas
+BFML	Barrefondo media luna
+BP200	Boya hongo P/piletas (P/200)
+BP50	Boya mini Pileta lona (P/50)
+BS200	Boya grande satelital (P/200)
+BS50	Boya chica satelital (P/50)
+	LINEA PLUMEROS
+PP	Plumero de pabilo blanco
+phc	Plumero algodon hilo grueso
+PHg	Plumero algodon hilo super grueso
+	LINEA PULVERIZADOR
+p500	Pulverizador multiuso 500cc
+P750	Pulverizador multiuso 750cc
+	LINEA REPELENTE- ESPIRAL
+ROFF	Repelente off
+R911	repelente 911
+TMX12	Tabletas P/mosquitos x12
+TMCU	Tabletas P/mosquitos C/U
+ECU	Raid espiral x unidad 
+EX12	Raid espiral x12
+	LINEA REJILLAS
+Rcms	Rejilla de color Magic Soft
+Rpmt	Rejilla pabilo MT
+ram	Rejilla americana MAKE
+RM60x40	Rejillas microfibra Laffitte 60x40
+RM35X35	Rejillas Microfibra Laffitte 35x35
+Rem	Rejillas Esponjas Make
+PS	Rejilla paños multiusos sueltos
+	LINEA REPASADORES
+RCM	REPASADORES DE TOLLA Make 
+RF	Repasadores tollas fribran
+RT	Repasadores toalla mister trapo
+	LINEA RIEGO
+S	Sapito riego
+M	Manguera 15 mts 1/2
+	LINEA SAHUMERIOS
+PSh	Porta Sahumerios
+CX1	Carbon neutro sagrada madre  C/U (Caja de 24)
+BHX4	Bomba humo sagrada madre x4
+CX10	Sahumerios cono cascada x10
+SFX10	sahumerios banglades x10 finos
+STDX5	Sahumerios triple duracion x 5 gruesos
+	LINEA SECADOR PARA PISO
+SbP	SECADOR DOBLE PREMIUM blanco
+SDE	SECADOR DOBLE ECO
+SPS	Secador de piso salzano
+	LINEA SOPAPA
+SG20	Sopapa Grande20CM
+SC11	Sopapa Chica11CM
+	LINEA TRAPO PISO
+TB	Trapo de pisos blancos
+TBC	Trapo de pisos consorcios blanco MT
+TGC	Trapo de pisos consorcios gris MT
+TG	Trapo de pisos gris MT
+trl10	Trapo de pisos rayados linea 10
+tbl10	Trapo de pisos blanco linea 10
+tgl10	Trapo de pisos gris linea 10
+	LINEA VELAS
+VC	Velas Cortas 10cm
+VL	Velas Largas 20cm
+	LINEA VIRULANA
+vx10	Virulana x10  (lana de acero)
+	LINEA TOALLA FEMENINA
+TFA	Toallas femeninas Always ajuste perfecto x 8 
+TFd	Toallas femeninas doncella x 8
+	Protector diario doncella x20
+>>>>>>> 6711b806b57d0f99ee0f146d1dda4da69697b304
+	Algodón doncella
