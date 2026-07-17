@@ -1,22 +1,17 @@
-<<<<<<< HEAD
-const CACHE_NAME = "famat-pedidos-v15";
-=======
-const CACHE_NAME = "famat-pedidos-v12";
->>>>>>> 6711b806b57d0f99ee0f146d1dda4da69697b304
+const CACHE_NAME = "famat-pedidos-v16";
 const APP_SHELL = [
   "/",
   "/index.html",
   "/style.css",
   "/script.js",
   "/catalogo-famat.js",
-  "/supabase-famat.js",
   "/manifest.json",
   "/images/placeholder.svg",
   "/icon-192x192.png",
   "/icon-512x512.png"
 ];
 
-const NETWORK_FIRST_FILES = ["/script.js", "/catalogo-famat.js", "/supabase-famat.js", "/style.css", "/index.html"];
+const NETWORK_FIRST_FILES = ["/script.js", "/catalogo-famat.js", "/style.css", "/index.html"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
