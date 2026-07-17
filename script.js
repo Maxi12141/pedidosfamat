@@ -1109,7 +1109,7 @@ function actualizarHeaderCompacto() {
 
 // ── Carga + bienvenida + tour ────────────────────────────────
 const ONBOARDING_KEY = 'famat_onboarding_v1';
-const CARGA_MIN_MS = 280;
+const CARGA_MIN_MS = 5000;
 
 const TOUR_PASOS = [
     {
@@ -1306,7 +1306,7 @@ window.addEventListener('DOMContentLoaded', function () {
     actualizarDisplayStepper('panelQty');
     actualizarHeaderCompacto();
 
-    // Esperar el primer pintado del catálogo y salir del splash sin forzar 1s+ de espera.
+    // Mantener la pantalla de carga al menos 5s para que se vea bien.
     window.requestAnimationFrame(function () {
         window.requestAnimationFrame(function () {
             const restante = Math.max(0, CARGA_MIN_MS - (Date.now() - inicio));
