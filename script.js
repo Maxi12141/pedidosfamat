@@ -1138,6 +1138,7 @@ const TOUR_PASOS = [
 let tourIndice = 0;
 let tourActivo = false;
 let tourPosTimer = 0;
+let tourScrollLockActivo = false;
 
 function esTourMobile() {
     return window.matchMedia('(max-width: 768px)').matches;
@@ -1152,6 +1153,34 @@ function selectorPasoTour(paso) {
 function reservaTarjetaTour() {
     if (!esTourMobile()) return 0;
     return Math.min(Math.round(window.innerHeight * 0.4), 260);
+}
+
+function esScrollDentroTarjetaTour(target) {
+    return !!(target && target.closest && target.closest('.tour-guiado__tarjeta'));
+}
+
+function bloquearScrollManualTour(e) {
+    if (!tourActivo) return;
+    if (esScrollDentroTarjetaTour(e.target)) return;
+    e.preventDefault();
+}
+
+function activarBloqueoScrollTour() {
+    if (tourScrollLockActivo) return;
+    tourScrollLockActivo = true;
+    document.documentElement.classList.add('tour-scroll-lock');
+    document.body.classList.add('tour-scroll-lock');
+    document.addEventListener('touchmove', bloquearScrollManualTour, { passive: false });
+    document.addEventListener('wheel', bloquearScrollManualTour, { passive: false });
+}
+
+function desactivarBloqueoScrollTour() {
+    if (!tourScrollLockActivo) return;
+    tourScrollLockActivo = false;
+    document.documentElement.classList.remove('tour-scroll-lock');
+    document.body.classList.remove('tour-scroll-lock');
+    document.removeEventListener('touchmove', bloquearScrollManualTour, { passive: false });
+    document.removeEventListener('wheel', bloquearScrollManualTour, { passive: false });
 }
 
 function yaCompletoOnboarding() {
@@ -1222,14 +1251,9 @@ function iniciarTourGuiado() {
     if (!tour) return;
     tour.hidden = false;
     tour.setAttribute('aria-hidden', 'false');
-    // En celular no bloqueamos el scroll: si no, el highlight queda desfasado.
-    if (esTourMobile()) {
-        document.body.classList.add('tour-mobile-activo');
-        document.body.style.overflow = '';
-    } else {
-        document.body.classList.remove('tour-mobile-activo');
-        document.body.style.overflow = 'hidden';
-    }
+    document.body.classList.toggle('tour-mobile-activo', esTourMobile());
+    document.body.style.overflow = 'hidden';
+    activarBloqueoScrollTour();
     mostrarPasoTour();
 }
 
@@ -1239,6 +1263,7 @@ function cerrarTourGuiado(marcarCompleto) {
         window.clearTimeout(tourPosTimer);
         tourPosTimer = 0;
     }
+    desactivarBloqueoScrollTour();
     limpiarResaltadoTour();
     const tour = document.getElementById('tourGuiado');
     if (tour) {
@@ -1263,6 +1288,12 @@ function limpiarResaltadoTour() {
 
 function scrollTargetTour(target) {
     if (!target) return;
+    // Permitir scroll programado aunque el body esté bloqueado.
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    const prevBodyOverflow = document.body.style.overflow;
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+
     const rect = target.getBoundingClientRect();
     const reserva = reservaTarjetaTour();
     const header = document.querySelector('.site-header');
@@ -1274,12 +1305,11 @@ function scrollTargetTour(target) {
         : Math.max(topPad, (usable - rect.height) / 2);
     const delta = rect.top - idealTop;
     if (Math.abs(delta) > 6) {
-        window.scrollBy({
-            top: delta,
-            left: 0,
-            behavior: esTourMobile() ? 'auto' : 'smooth'
-        });
+        window.scrollBy(0, delta);
     }
+
+    document.documentElement.style.overflow = prevHtmlOverflow;
+    document.body.style.overflow = prevBodyOverflow || 'hidden';
 }
 
 function mostrarPasoTour() {
