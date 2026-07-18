@@ -1150,9 +1150,16 @@ function selectorPasoTour(paso) {
     return paso.target;
 }
 
+function alturaTarjetaTour() {
+    const tarjeta = document.querySelector('.tour-guiado__tarjeta');
+    if (!tarjeta) return 0;
+    return Math.ceil(tarjeta.getBoundingClientRect().height);
+}
+
 function reservaTarjetaTour() {
     if (!esTourMobile()) return 0;
-    return Math.min(Math.round(window.innerHeight * 0.4), 260);
+    // Usar la altura real de la tarjeta (más chica) para no recortar el highlight.
+    return Math.max(alturaTarjetaTour() + 16, 150);
 }
 
 function esScrollDentroTarjetaTour(target) {
@@ -1286,30 +1293,57 @@ function limpiarResaltadoTour() {
     });
 }
 
-function scrollTargetTour(target) {
-    if (!target) return;
-    // Permitir scroll programado aunque el body esté bloqueado.
+function conScrollProgramadoTour(fn) {
     const prevHtmlOverflow = document.documentElement.style.overflow;
     const prevBodyOverflow = document.body.style.overflow;
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
-
-    const rect = target.getBoundingClientRect();
-    const reserva = reservaTarjetaTour();
-    const header = document.querySelector('.site-header');
-    const headerH = header ? header.getBoundingClientRect().height : 0;
-    const topPad = Math.max(12, headerH + 10);
-    const usable = window.innerHeight - reserva;
-    const idealTop = esTourMobile()
-        ? topPad
-        : Math.max(topPad, (usable - rect.height) / 2);
-    const delta = rect.top - idealTop;
-    if (Math.abs(delta) > 6) {
-        window.scrollBy(0, delta);
+    try {
+        fn();
+    } finally {
+        document.documentElement.style.overflow = prevHtmlOverflow;
+        document.body.style.overflow = prevBodyOverflow || 'hidden';
     }
+}
 
-    document.documentElement.style.overflow = prevHtmlOverflow;
-    document.body.style.overflow = prevBodyOverflow || 'hidden';
+function scrollTargetTour(target) {
+    if (!target) return;
+    conScrollProgramadoTour(function () {
+        const header = document.querySelector('.site-header');
+        // Header más chico = más espacio para ver nombre + WhatsApp juntos.
+        if (header && esTourMobile()) header.classList.add('site-header--compact');
+
+        const reserva = reservaTarjetaTour();
+        const vh = window.innerHeight;
+        const headerH = header ? header.getBoundingClientRect().height : 0;
+        const topPad = esTourMobile() ? Math.max(8, Math.min(headerH + 8, 64)) : Math.max(12, headerH + 10);
+        const usableBottom = vh - reserva;
+        const usableHeight = Math.max(120, usableBottom - topPad);
+        const rect = target.getBoundingClientRect();
+
+        let idealTop;
+        if (esTourMobile()) {
+            // Encajar TODO el bloque (nombre + WhatsApp) arriba de la tarjeta.
+            if (rect.height <= usableHeight) {
+                idealTop = topPad + Math.max(0, (usableHeight - rect.height) * 0.15);
+            } else {
+                idealTop = topPad;
+            }
+        } else {
+            idealTop = Math.max(topPad, (usableBottom - rect.height) / 2);
+        }
+
+        let delta = rect.top - idealTop;
+        // Si el borde inferior queda tapado por la tarjeta, subir más la página.
+        const projectedBottom = rect.bottom - delta;
+        if (projectedBottom > usableBottom - 4) {
+            delta += projectedBottom - (usableBottom - 4);
+        }
+
+        if (Math.abs(delta) > 4) {
+            window.scrollBy(0, delta);
+        }
+    });
 }
 
 function mostrarPasoTour() {
@@ -1345,17 +1379,24 @@ function mostrarPasoTour() {
         target.classList.add('tour-objetivo');
         spotlight.classList.remove('tour-guiado__spotlight--listo');
         spotlight.hidden = true;
-        scrollTargetTour(target);
-        const delay = esTourMobile() ? 80 : 300;
-        tourPosTimer = window.setTimeout(function () {
-            posicionarSpotlight(target, spotlight);
-            // Re-medir en celular por si el header sticky cambió de alto.
-            if (esTourMobile()) {
-                tourPosTimer = window.setTimeout(function () {
-                    posicionarSpotlight(target, spotlight);
-                }, 120);
-            }
-        }, delay);
+
+        // Primero pintar texto (afecta alto de tarjeta), después acomodar scroll y foco.
+        window.requestAnimationFrame(function () {
+            if (!tourActivo) return;
+            scrollTargetTour(target);
+            const delay = esTourMobile() ? 60 : 300;
+            tourPosTimer = window.setTimeout(function () {
+                // Segunda pasada: si aún no entra todo, re-scroll y re-medir.
+                if (esTourMobile()) scrollTargetTour(target);
+                posicionarSpotlight(target, spotlight);
+                if (esTourMobile()) {
+                    tourPosTimer = window.setTimeout(function () {
+                        scrollTargetTour(target);
+                        posicionarSpotlight(target, spotlight);
+                    }, 100);
+                }
+            }, delay);
+        });
     } else if (spotlight) {
         if (backdrop) backdrop.style.opacity = '1';
         spotlight.hidden = true;
@@ -1368,19 +1409,24 @@ function posicionarSpotlight(target, spotlight) {
     const pad = esTourMobile() ? 6 : 8;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
-    const reserva = reservaTarjetaTour();
-    const maxBottom = vh - reserva - 8;
 
     let left = rect.left - pad;
     let top = rect.top - pad;
     let width = rect.width + pad * 2;
     let height = rect.height + pad * 2;
 
-    // Mantener el recuadro dentro del área útil (arriba de la tarjeta en celu).
     left = Math.max(8, Math.min(left, vw - 24));
-    top = Math.max(8, Math.min(top, maxBottom - 24));
     width = Math.max(24, Math.min(width, vw - left - 8));
-    height = Math.max(24, Math.min(height, maxBottom - top));
+
+    if (esTourMobile()) {
+        // En celu NO recortar el alto: tiene que verse el bloque completo
+        // (ej. nombre + WhatsApp). El scroll ya dejó espacio sobre la tarjeta.
+        top = Math.max(4, top);
+        height = Math.max(24, height);
+    } else {
+        top = Math.max(8, Math.min(top, vh - 24));
+        height = Math.max(24, Math.min(height, vh - top - 8));
+    }
 
     spotlight.hidden = false;
     spotlight.style.top = Math.round(top) + 'px';

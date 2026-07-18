@@ -1686,8 +1686,26 @@ select:focus {
         overscroll-behavior: none;
     }
 
+    /* Tarjeta más baja para que entre toda la sección (nombre + WhatsApp). */
     .tour-mobile-activo .tour-guiado__tarjeta {
-        max-height: min(38vh, 300px);
+        max-height: min(30vh, 200px);
+        padding: 12px 12px 10px;
+    }
+
+    .tour-mobile-activo .tour-guiado__titulo {
+        font-size: 0.98rem;
+        margin-bottom: 6px;
+    }
+
+    .tour-mobile-activo .tour-guiado__texto {
+        font-size: 0.82rem;
+        line-height: 1.35;
+        margin-bottom: 10px;
+    }
+
+    .tour-mobile-activo .tour-guiado__btn {
+        min-height: 38px;
+        font-size: 0.84rem;
     }
 }
 
