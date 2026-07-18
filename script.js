@@ -1119,6 +1119,7 @@ const TOUR_PASOS = [
     },
     {
         target: '[data-tour="catalogo"]',
+        targetMobile: '[data-tour="catalogo-controles"]',
         titulo: '2 · Elegí del catálogo (la lista de productos)',
         texto: 'Usá las pestañas —los botones de arriba— Producto, Líquido o A granel. Podés buscar por nombre o filtrar por línea (el rubro o grupo, por ejemplo “Baldes” o “Ceras”). Tocá un producto para elegir la cantidad y sumarlo al pedido.'
     },
@@ -1136,6 +1137,22 @@ const TOUR_PASOS = [
 
 let tourIndice = 0;
 let tourActivo = false;
+let tourPosTimer = 0;
+
+function esTourMobile() {
+    return window.matchMedia('(max-width: 768px)').matches;
+}
+
+function selectorPasoTour(paso) {
+    if (!paso) return null;
+    if (esTourMobile() && paso.targetMobile) return paso.targetMobile;
+    return paso.target;
+}
+
+function reservaTarjetaTour() {
+    if (!esTourMobile()) return 0;
+    return Math.min(Math.round(window.innerHeight * 0.4), 260);
+}
 
 function yaCompletoOnboarding() {
     try {
@@ -1205,12 +1222,23 @@ function iniciarTourGuiado() {
     if (!tour) return;
     tour.hidden = false;
     tour.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    // En celular no bloqueamos el scroll: si no, el highlight queda desfasado.
+    if (esTourMobile()) {
+        document.body.classList.add('tour-mobile-activo');
+        document.body.style.overflow = '';
+    } else {
+        document.body.classList.remove('tour-mobile-activo');
+        document.body.style.overflow = 'hidden';
+    }
     mostrarPasoTour();
 }
 
 function cerrarTourGuiado(marcarCompleto) {
     tourActivo = false;
+    if (tourPosTimer) {
+        window.clearTimeout(tourPosTimer);
+        tourPosTimer = 0;
+    }
     limpiarResaltadoTour();
     const tour = document.getElementById('tourGuiado');
     if (tour) {
@@ -1218,7 +1246,11 @@ function cerrarTourGuiado(marcarCompleto) {
         tour.setAttribute('aria-hidden', 'true');
     }
     const spotlight = document.getElementById('tourSpotlight');
-    if (spotlight) spotlight.hidden = true;
+    if (spotlight) {
+        spotlight.hidden = true;
+        spotlight.classList.remove('tour-guiado__spotlight--listo');
+    }
+    document.body.classList.remove('tour-mobile-activo');
     document.body.style.overflow = '';
     if (marcarCompleto) marcarOnboardingCompleto();
 }
@@ -1227,6 +1259,27 @@ function limpiarResaltadoTour() {
     document.querySelectorAll('.tour-objetivo').forEach(function (el) {
         el.classList.remove('tour-objetivo');
     });
+}
+
+function scrollTargetTour(target) {
+    if (!target) return;
+    const rect = target.getBoundingClientRect();
+    const reserva = reservaTarjetaTour();
+    const header = document.querySelector('.site-header');
+    const headerH = header ? header.getBoundingClientRect().height : 0;
+    const topPad = Math.max(12, headerH + 10);
+    const usable = window.innerHeight - reserva;
+    const idealTop = esTourMobile()
+        ? topPad
+        : Math.max(topPad, (usable - rect.height) / 2);
+    const delta = rect.top - idealTop;
+    if (Math.abs(delta) > 6) {
+        window.scrollBy({
+            top: delta,
+            left: 0,
+            behavior: esTourMobile() ? 'auto' : 'smooth'
+        });
+    }
 }
 
 function mostrarPasoTour() {
@@ -1247,17 +1300,32 @@ function mostrarPasoTour() {
     if (btnSig) btnSig.textContent = tourIndice === TOUR_PASOS.length - 1 ? 'Empezar' : 'Siguiente';
 
     limpiarResaltadoTour();
-    const target = document.querySelector(paso.target);
+    const selector = selectorPasoTour(paso);
+    const target = selector ? document.querySelector(selector) : null;
     const spotlight = document.getElementById('tourSpotlight');
     const backdrop = document.querySelector('.tour-guiado__backdrop');
+
+    if (tourPosTimer) {
+        window.clearTimeout(tourPosTimer);
+        tourPosTimer = 0;
+    }
 
     if (target && spotlight) {
         if (backdrop) backdrop.style.opacity = '0';
         target.classList.add('tour-objetivo');
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        window.setTimeout(function () {
+        spotlight.classList.remove('tour-guiado__spotlight--listo');
+        spotlight.hidden = true;
+        scrollTargetTour(target);
+        const delay = esTourMobile() ? 80 : 300;
+        tourPosTimer = window.setTimeout(function () {
             posicionarSpotlight(target, spotlight);
-        }, 280);
+            // Re-medir en celular por si el header sticky cambió de alto.
+            if (esTourMobile()) {
+                tourPosTimer = window.setTimeout(function () {
+                    posicionarSpotlight(target, spotlight);
+                }, 120);
+            }
+        }, delay);
     } else if (spotlight) {
         if (backdrop) backdrop.style.opacity = '1';
         spotlight.hidden = true;
@@ -1267,18 +1335,29 @@ function mostrarPasoTour() {
 function posicionarSpotlight(target, spotlight) {
     if (!tourActivo || !target || !spotlight) return;
     const rect = target.getBoundingClientRect();
-    const pad = 8;
+    const pad = esTourMobile() ? 6 : 8;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
-    const left = Math.max(8, Math.min(rect.left - pad, vw - 24));
-    const top = Math.max(8, Math.min(rect.top - pad, vh - 24));
-    const width = Math.max(24, Math.min(vw - left - 8, rect.width + pad * 2));
-    const height = Math.max(24, Math.min(vh - top - 8, rect.height + pad * 2));
+    const reserva = reservaTarjetaTour();
+    const maxBottom = vh - reserva - 8;
+
+    let left = rect.left - pad;
+    let top = rect.top - pad;
+    let width = rect.width + pad * 2;
+    let height = rect.height + pad * 2;
+
+    // Mantener el recuadro dentro del área útil (arriba de la tarjeta en celu).
+    left = Math.max(8, Math.min(left, vw - 24));
+    top = Math.max(8, Math.min(top, maxBottom - 24));
+    width = Math.max(24, Math.min(width, vw - left - 8));
+    height = Math.max(24, Math.min(height, maxBottom - top));
+
     spotlight.hidden = false;
-    spotlight.style.top = top + 'px';
-    spotlight.style.left = left + 'px';
-    spotlight.style.width = width + 'px';
-    spotlight.style.height = height + 'px';
+    spotlight.style.top = Math.round(top) + 'px';
+    spotlight.style.left = Math.round(left) + 'px';
+    spotlight.style.width = Math.round(width) + 'px';
+    spotlight.style.height = Math.round(height) + 'px';
+    spotlight.classList.add('tour-guiado__spotlight--listo');
 }
 
 function avanzarTourGuiado() {
@@ -1326,7 +1405,7 @@ window.addEventListener('scroll', function () {
     if (!tourActivo) return;
     const paso = TOUR_PASOS[tourIndice];
     if (!paso) return;
-    const target = document.querySelector(paso.target);
+    const target = document.querySelector(selectorPasoTour(paso));
     const spotlight = document.getElementById('tourSpotlight');
     if (target && spotlight && !spotlight.hidden) posicionarSpotlight(target, spotlight);
 }, { passive: true });
@@ -1335,7 +1414,7 @@ window.addEventListener('resize', function () {
     if (!tourActivo) return;
     const paso = TOUR_PASOS[tourIndice];
     if (!paso) return;
-    const target = document.querySelector(paso.target);
+    const target = document.querySelector(selectorPasoTour(paso));
     const spotlight = document.getElementById('tourSpotlight');
     if (target && spotlight && !spotlight.hidden) posicionarSpotlight(target, spotlight);
 });
