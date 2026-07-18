@@ -2090,11 +2090,11 @@
   {
     "slug": "jabon-tocador",
     "nombre": "Jabon Tocador",
-    "query": "Jabon Tocador producto fondo blanco",
+    "query": "bidon jabon tocador liquido Famat etiqueta rosa fondo blanco",
     "ok": true,
-    "url": "https://img.freepik.com/fotos-premium/pedazo-jabon-tocador-fondo-blanco_420001-10585.jpg",
+    "url": "generated-local",
     "error": null,
-    "source": "freepik.es"
+    "source": "generated"
   },
   {
     "slug": "lavandina",

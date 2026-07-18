@@ -1268,11 +1268,17 @@ function posicionarSpotlight(target, spotlight) {
     if (!tourActivo || !target || !spotlight) return;
     const rect = target.getBoundingClientRect();
     const pad = 8;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const left = Math.max(8, Math.min(rect.left - pad, vw - 24));
+    const top = Math.max(8, Math.min(rect.top - pad, vh - 24));
+    const width = Math.max(24, Math.min(vw - left - 8, rect.width + pad * 2));
+    const height = Math.max(24, Math.min(vh - top - 8, rect.height + pad * 2));
     spotlight.hidden = false;
-    spotlight.style.top = Math.max(8, rect.top - pad) + 'px';
-    spotlight.style.left = Math.max(8, rect.left - pad) + 'px';
-    spotlight.style.width = Math.min(window.innerWidth - 16, rect.width + pad * 2) + 'px';
-    spotlight.style.height = Math.min(window.innerHeight - 16, rect.height + pad * 2) + 'px';
+    spotlight.style.top = top + 'px';
+    spotlight.style.left = left + 'px';
+    spotlight.style.width = width + 'px';
+    spotlight.style.height = height + 'px';
 }
 
 function avanzarTourGuiado() {
