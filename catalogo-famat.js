@@ -545,7 +545,7 @@ function slugifyNombre(nombre) {
 }
 
 function imagenProducto(slug) {
-    return 'images/productos/' + slug + '.jpg?v=18';
+    return 'images/productos/' + slug + '.jpg?v=19';
 }
 
 const IMAGEN_PLACEHOLDER = 'images/placeholder.svg';
