@@ -9,7 +9,6 @@ const CATALOGO_LINEAS = [
         { nombre: "Aerosol saphirus", slug: "aerosol-saphirus" },
         { nombre: "Saphirus textil", slug: "saphirus-textil" },
         { nombre: "Aceite esencial ambar", slug: "aceite-esencial-ambar" },
-        { nombre: "Saphirus touch repuesto + dispositivo", slug: "saphirus-touch-repuesto-dispositivo" },
         { nombre: "Saphirus touch repuesto", slug: "saphirus-touch-repuesto" },
         { nombre: "Dispenser analogico atomizador", slug: "dispenser-analogico-atomizador" }
     ]},
@@ -17,7 +16,6 @@ const CATALOGO_LINEAS = [
         { nombre: "Pinitos Walker", slug: "pinitos-walker" },
         { nombre: "Pinitos k78", slug: "pinitos-k78" },
         { nombre: "Lata en gel mini k78", slug: "lata-en-gel-mini-k78" },
-        { nombre: "Lata en gel mini glade", slug: "lata-en-gel-mini-glade" },
         { nombre: "Lubricante en aerosol Escudo", slug: "lubricante-en-aerosol-escudo" },
         { nombre: "Silicona aerosol k78", slug: "silicona-aerosol-k78" },
         { nombre: "Cepillo p/auto", slug: "cepillo-p-auto" }
@@ -25,9 +23,7 @@ const CATALOGO_LINEAS = [
     { linea: "LINEA ALFOMBRAS", tipo: "producto", items: [
         { nombre: "Alfombra P/baño", slug: "alfombra-p-bano" },
         { nombre: "Alfombra exterior semicircular", slug: "alfombra-exterior-semicircular" },
-        { nombre: "Alfombra baño 60x40 blanco oriental", slug: "alfombra-bano-60x40-blanco-oriental" },
-        { nombre: "Alfombra de goma ventosa", slug: "alfombra-de-goma-ventosa" },
-        { nombre: "Alfombra doble base 35x50", slug: "alfombra-doble-base-35x50" }
+        { nombre: "Alfombra de goma ventosa", slug: "alfombra-de-goma-ventosa" }
     ]},
     { linea: "LINEA BALDES", tipo: "producto", items: [
         { nombre: "Balde centrifugo tambor acero", slug: "balde-centrifugo-tambor-acero" },
@@ -136,7 +132,6 @@ const CATALOGO_LINEAS = [
         { nombre: "Esponja fibra verde make", slug: "esponja-fibra-verde-make" },
         { nombre: "Esponja doble uso Make", slug: "esponja-doble-uso-make" },
         { nombre: "Esponja doble cara DEA", slug: "esponja-doble-cara-dea" },
-        { nombre: "Rejillas Dorada doble cara", slug: "rejillas-dorada-doble-cara" },
         { nombre: "Esponjas Amarillas salvauñas make", slug: "esponjas-amarillas-salvaunas-make" }
     ]},
     { linea: "LINEA FOSFOROS", tipo: "producto", items: [
@@ -169,7 +164,6 @@ const CATALOGO_LINEAS = [
         { nombre: "Granulado raticida ultra plus", slug: "granulado-raticida-ultra-plus" },
         { nombre: "Cebo cucarachas geltek 6 estaciones", slug: "cebo-cucarachas-geltek-6-estaciones" },
         { nombre: "Cebo mosca granulado", slug: "cebo-mosca-granulado" },
-        { nombre: "Naftalina", slug: "naftalina" },
         { nombre: "NAFTALINA x 200", slug: "naftalina-x-200" }
     ]},
     { linea: "LINEA JABON EN PAN", tipo: "producto", items: [
@@ -221,7 +215,6 @@ const CATALOGO_LINEAS = [
         { nombre: "Mopa microfibra", slug: "mopa-microfibra" }
     ]},
     { linea: "LINEA PALAS BASURA", tipo: "producto", items: [
-        { nombre: "Pala c/cabo Mapuche", slug: "pala-c-cabo-mapuche" },
         { nombre: "Pala cabo economica COLORES", slug: "pala-cabo-economica-colores" },
         { nombre: "Pala c/cabo NEGRA", slug: "pala-c-cabo-negra" },
         { nombre: "Pala mano c/goma", slug: "pala-mano-c-goma" },
@@ -545,7 +538,7 @@ function slugifyNombre(nombre) {
 }
 
 function imagenProducto(slug) {
-    return 'images/productos/' + slug + '.jpg?v=19';
+    return 'images/productos/' + slug + '.jpg?v=21';
 }
 
 const IMAGEN_PLACEHOLDER = 'images/placeholder.svg';
