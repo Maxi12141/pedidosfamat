@@ -24,6 +24,8 @@ const CATALOGO_LINEAS = [
         { nombre: "Cepillo p/auto", slug: "cepillo-p-auto" }
     ]},
     { linea: "LINEA ALFOMBRAS", tipo: "producto", items: [
+        { nombre: "Alfombra P/baño", slug: "alfombra-p-bano" },
+        { nombre: "Alfombra exterior semicircular", slug: "alfombra-exterior-semicircular" },
         { nombre: "Alfombra baño 60x40 blanco oriental", slug: "alfombra-bano-60x40-blanco-oriental" },
         { nombre: "Alfombra de goma ventosa", slug: "alfombra-de-goma-ventosa" },
         { nombre: "Alfombra doble base 35x50", slug: "alfombra-doble-base-35x50" }
@@ -88,6 +90,7 @@ const CATALOGO_LINEAS = [
         { nombre: "Cepillo planchita y cerrado", slug: "cepillo-planchita-y-cerrado" },
         { nombre: "Cepillos limpia inodoro chico", slug: "cepillos-limpia-inodoro-chico" },
         { nombre: "Cepillos limpia inodoro grande", slug: "cepillos-limpia-inodoro-grande" },
+        { nombre: "Cepillo inodoro sin base", slug: "cepillo-inodoro-sin-base" },
         { nombre: "Cepillo limpia inodoro c/base extralimp", slug: "cepillo-limpia-inodoro-c-base-extralimp" },
         { nombre: "Cepillos limpia inodoro c/base salzano", slug: "cepillos-limpia-inodoro-c-base-salzano" },
         { nombre: "Cepillos limpia inodoro c/base importado Chico", slug: "cepillos-limpia-inodoro-c-base-importado-chico" }
@@ -545,7 +548,7 @@ function slugifyNombre(nombre) {
 }
 
 function imagenProducto(slug) {
-    return 'images/productos/' + slug + '.jpg?v=14';
+    return 'images/productos/' + slug + '.jpg?v=15';
 }
 
 const IMAGEN_PLACEHOLDER = 'images/placeholder.svg';
