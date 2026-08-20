@@ -16,7 +16,6 @@ const CATALOGO_LINEAS = [
     { linea: "LINEA AUTO", tipo: "producto", items: [
         { nombre: "Pinitos Walker", slug: "pinitos-walker" },
         { nombre: "Pinitos k78", slug: "pinitos-k78" },
-        { nombre: "Bolitas perfumadas", slug: "bolitas-perfumadas" },
         { nombre: "Lata en gel mini k78", slug: "lata-en-gel-mini-k78" },
         { nombre: "Lata en gel mini glade", slug: "lata-en-gel-mini-glade" },
         { nombre: "Lubricante en aerosol Escudo", slug: "lubricante-en-aerosol-escudo" },
@@ -88,9 +87,7 @@ const CATALOGO_LINEAS = [
         { nombre: "Cepillo uñas c/u", slug: "cepillo-unas-c-u" },
         { nombre: "cepillo lava-zapatilla", slug: "cepillo-lava-zapatilla" },
         { nombre: "Cepillo planchita y cerrado", slug: "cepillo-planchita-y-cerrado" },
-        { nombre: "Cepillos limpia inodoro chico", slug: "cepillos-limpia-inodoro-chico" },
-        { nombre: "Cepillos limpia inodoro grande", slug: "cepillos-limpia-inodoro-grande" },
-        { nombre: "Cepillo inodoro sin base", slug: "cepillo-inodoro-sin-base" },
+        { nombre: "Cepillo inodoro sin base", slug: "cepillos-limpia-inodoro-grande" },
         { nombre: "Cepillo limpia inodoro c/base extralimp", slug: "cepillo-limpia-inodoro-c-base-extralimp" },
         { nombre: "Cepillos limpia inodoro c/base salzano", slug: "cepillos-limpia-inodoro-c-base-salzano" },
         { nombre: "Cepillos limpia inodoro c/base importado Chico", slug: "cepillos-limpia-inodoro-c-base-importado-chico" }
@@ -137,8 +134,9 @@ const CATALOGO_LINEAS = [
         { nombre: "Esponja de baño chica", slug: "esponja-de-bano-chica" },
         { nombre: "Esponja de baño grande", slug: "esponja-de-bano-grande" },
         { nombre: "Esponja fibra verde make", slug: "esponja-fibra-verde-make" },
+        { nombre: "Esponja doble uso Make", slug: "esponja-doble-uso-make" },
+        { nombre: "Esponja doble cara DEA", slug: "esponja-doble-cara-dea" },
         { nombre: "Rejillas Dorada doble cara", slug: "rejillas-dorada-doble-cara" },
-        { nombre: "Esponjas Amarillas salvauñas MORTINER", slug: "esponjas-amarillas-salvaunas-mortiner" },
         { nombre: "Esponjas Amarillas salvauñas make", slug: "esponjas-amarillas-salvaunas-make" }
     ]},
     { linea: "LINEA FOSFOROS", tipo: "producto", items: [
@@ -172,8 +170,7 @@ const CATALOGO_LINEAS = [
         { nombre: "Cebo cucarachas geltek 6 estaciones", slug: "cebo-cucarachas-geltek-6-estaciones" },
         { nombre: "Cebo mosca granulado", slug: "cebo-mosca-granulado" },
         { nombre: "Naftalina", slug: "naftalina" },
-        { nombre: "NAFTALINA x 200", slug: "naftalina-x-200" },
-        { nombre: "Mata cucaracha acido borico", slug: "mata-cucaracha-acido-borico" }
+        { nombre: "NAFTALINA x 200", slug: "naftalina-x-200" }
     ]},
     { linea: "LINEA JABON EN PAN", tipo: "producto", items: [
         { nombre: "Jabon detergente Quitamanchas", slug: "jabon-detergente-quitamanchas" },
@@ -548,7 +545,7 @@ function slugifyNombre(nombre) {
 }
 
 function imagenProducto(slug) {
-    return 'images/productos/' + slug + '.jpg?v=15';
+    return 'images/productos/' + slug + '.jpg?v=18';
 }
 
 const IMAGEN_PLACEHOLDER = 'images/placeholder.svg';

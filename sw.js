@@ -1,4 +1,4 @@
-const CACHE_NAME = "famat-pedidos-v17";
+const CACHE_NAME = "famat-pedidos-v20";
 const APP_SHELL = [
   "/",
   "/index.html",
