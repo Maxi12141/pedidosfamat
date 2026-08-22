@@ -340,6 +340,13 @@ const FRAGANCIAS_LIQUIDO = {
     'Perfumina': [
         'Lavanda', 'Marina', 'Pino', 'Uva', 'Citronela', 'Bosque de bambu',
         'Chicle', 'Citrico', 'Floral', 'Lysoform', 'Espadol', 'Cony'
+    ],
+    'Desinfectante P/piso': [
+        'Lysoform', 'Espadol', 'Procenex'
+    ],
+    'Desodorante P/piso': [
+        'Citronela', 'Chicle', 'Lavanda', 'Bosque de bamboo', 'Uva', 'Marina',
+        'Pino', 'Cony', 'Citrico', 'Limón', 'Floral'
     ]
 };
 
