@@ -1,17 +1,18 @@
-const CACHE_NAME = "famat-pedidos-v24";
+const CACHE_NAME = "famat-pedidos-v25";
 const APP_SHELL = [
   "/",
   "/index.html",
   "/style.css",
   "/script.js",
   "/catalogo-famat.js",
+  "/catalogo-remoto.js",
   "/manifest.json",
   "/images/placeholder.svg",
   "/icon-192x192.png",
   "/icon-512x512.png"
 ];
 
-const NETWORK_FIRST_FILES = ["/script.js", "/catalogo-famat.js", "/style.css", "/index.html"];
+const NETWORK_FIRST_FILES = ["/script.js", "/catalogo-famat.js", "/catalogo-remoto.js", "/style.css", "/index.html"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

@@ -538,6 +538,10 @@ function slugifyNombre(nombre) {
 }
 
 function imagenProducto(slug) {
+    try {
+        const fotos = JSON.parse(localStorage.getItem('famat_fotos') || '{}');
+        if (fotos && fotos[slug]) return fotos[slug];
+    } catch (e) { /* ignore */ }
     return 'images/productos/' + slug + '.jpg?v=21';
 }
 

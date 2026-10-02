@@ -464,13 +464,30 @@ const cacheItemsPlanos = Object.create(null);
 const CATALOGO_LOTE = 48;
 let catalogoRenderToken = 0;
 
+function invalidarCacheCatalogo() {
+    Object.keys(cacheItemsPlanos).forEach(function (clave) {
+        delete cacheItemsPlanos[clave];
+    });
+}
+
+function slugsOcultos() {
+    try {
+        const parsed = JSON.parse(localStorage.getItem('famat_ocultos') || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+        return [];
+    }
+}
+
 function obtenerItemsPlanos(tipo) {
     if (cacheItemsPlanos[tipo]) return cacheItemsPlanos[tipo];
 
+    const ocultos = new Set(slugsOcultos());
     const vistos = new Map();
     obtenerLineasPorTipo(tipo).forEach(function (entrada) {
         entrada.items.forEach(function (raw) {
             const item = normalizarItem(raw);
+            if (ocultos.has(item.slug)) return;
             const clave = item.nombre.trim().toLowerCase();
             if (!vistos.has(clave)) {
                 vistos.set(clave, {
@@ -705,6 +722,23 @@ function cerrarPanelAgregar() {
         panel.classList.remove('panel-agregar--visible');
         panel.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+    }
+}
+
+function refrescarPanelAbierto() {
+    const panel = document.getElementById('panelAgregar');
+    if (!panel || !panel.classList.contains('panel-agregar--visible') || !itemSeleccionado) return;
+
+    const item = buscarItemPorSlug(itemSeleccionado.slug, itemSeleccionado.tipo);
+    if (!item) {
+        cerrarPanelAgregar();
+        return;
+    }
+
+    const img = document.getElementById('panelAgregarImg');
+    if (img) {
+        img.dataset.fallback = '';
+        img.src = rutaImagen(item.slug);
     }
 }
 
